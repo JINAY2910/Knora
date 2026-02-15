@@ -1,0 +1,54 @@
+interface Section {
+    id: string;
+    title: string;
+    href: string;
+}
+
+interface ConceptSidebarProps {
+    sections: Section[];
+    activeSection?: string;
+}
+
+export default function ConceptSidebar({ sections, activeSection }: ConceptSidebarProps) {
+    return (
+        <aside className="w-72 border-r-2 border-charcoal flex flex-col bg-paper hidden lg:flex">
+            <div className="p-8">
+                <h3 className="text-xs font-bold text-charcoal uppercase tracking-[0.2em] mb-6 border-b border-charcoal pb-2">
+                    Contents
+                </h3>
+                <nav className="space-y-3">
+                    {sections.map((section, index) => (
+                        <a
+                            key={section.id}
+                            href={section.href}
+                            className={
+                                section.id === activeSection
+                                    ? "block px-4 py-3 bg-white border border-charcoal shadow-[3px_3px_0px_0px_rgba(250,39,66,1)] text-charcoal font-bold text-sm"
+                                    : "block px-4 py-2 text-charcoal-light hover:text-crimson hover:translate-x-1 text-sm font-medium transition-transform duration-200"
+                            }
+                        >
+                            {section.title}
+                        </a>
+                    ))}
+                </nav>
+            </div>
+
+            {/* AI Tutor Widget */}
+            <div className="mt-auto p-8 border-t-2 border-charcoal bg-cream">
+                <div className="bg-charcoal p-5 text-cream shadow-[4px_4px_0px_0px_rgba(250,39,66,1)] relative overflow-hidden">
+                    <div className="absolute -right-4 -top-4 w-16 h-16 bg-crimson rounded-full opacity-20"></div>
+                    <div className="flex items-center gap-2 mb-3 relative z-10">
+                        <span className="material-symbols-outlined text-crimson text-sm">auto_awesome</span>
+                        <span className="text-xs font-bold uppercase tracking-widest text-white">AI Tutor</span>
+                    </div>
+                    <p className="text-sm text-gray-300 font-sans mb-4 leading-snug">
+                        Need a simpler explanation? Ask the AI.
+                    </p>
+                    <button className="w-full py-2 bg-cream text-charcoal text-xs font-bold uppercase tracking-wider hover:bg-white transition-colors border border-transparent hover:border-crimson">
+                        Ask Question
+                    </button>
+                </div>
+            </div>
+        </aside>
+    );
+}

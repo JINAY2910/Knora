@@ -1,0 +1,85 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html {
+  scroll-behavior: smooth;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #e8eae3;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #d1d3cd;
+  border: 1px solid #e8eae3;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #373833;
+}
+
+/* Concept Page Prose Styles */
+.prose-custom p {
+  margin-bottom: 1.5em;
+  line-height: 1.8;
+  font-size: 1.125rem;
+}
+
+.prose-custom h2 {
+  margin-top: 2.5em;
+  margin-bottom: 0.8em;
+  font-weight: 700;
+  font-family: 'Inter', sans-serif;
+  letter-spacing: -0.01em;
+  border-bottom: 2px solid #373833;
+  padding-bottom: 0.2em;
+  display: inline-block;
+}
+
+.prose-custom h3 {
+  margin-top: 2em;
+  margin-bottom: 0.75em;
+  font-weight: 600;
+  font-family: 'Inter', sans-serif;
+}
+
+@layer utilities {
+  .glass-nav {
+    @apply backdrop-blur-md bg-background-light/90 border-b border-background-dark/10;
+  }
+
+  .text-gradient {
+    @apply text-primary;
+  }
+
+  .card-hover {
+    @apply transition-all duration-300 hover:translate-y-[-4px] border border-background-dark;
+  }
+
+  .btn-primary {
+    @apply bg-primary text-white hover:bg-primary/90 transition-all;
+  }
+
+  .editorial-border {
+    border: 1px solid #373833;
+  }
+
+  .editorial-border-b {
+    border-bottom: 1px solid #373833;
+  }
+
+  .editorial-border-r {
+    border-right: 1px solid #373833;
+  }
+
+  .progress-circle {
+    transform: rotate(-90deg);
+    transform-origin: 50% 50%;
+  }
+}
