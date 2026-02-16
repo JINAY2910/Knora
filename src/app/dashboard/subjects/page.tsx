@@ -30,6 +30,7 @@ export default function SubjectsPage() {
                                     type: "read",
                                     duration: "15 MIN READ",
                                     pyqCount: 5,
+                                    difficulty: "EASY",
                                 },
                                 {
                                     title: "TCP vs UDP",
@@ -41,7 +42,7 @@ export default function SubjectsPage() {
                                     title: "Subnetting Basics",
                                     type: "practice",
                                     duration: "PRACTICE SET",
-                                    difficulty: "LOW",
+                                    difficulty: "EASY",
                                     locked: true,
                                 },
                             ]}
@@ -55,6 +56,27 @@ export default function SubjectsPage() {
                             progress={12}
                             status="active"
                             icon="database"
+                            priorityTopics={[
+                                {
+                                    title: "Normalization Forms",
+                                    type: "video",
+                                    duration: "12 MIN",
+                                    difficulty: "HARD",
+                                },
+                                {
+                                    title: "SQL Indexing",
+                                    type: "read",
+                                    duration: "8 MIN READ",
+                                    difficulty: "HARD",
+                                },
+                                {
+                                    title: "Transaction ACID Properties",
+                                    type: "video",
+                                    duration: "15 MIN",
+                                    difficulty: "MEDIUM",
+                                    locked: true,
+                                }
+                            ]}
                         />
 
                         {/* Operating Systems */}
@@ -62,7 +84,7 @@ export default function SubjectsPage() {
                             title="Operating Systems"
                             modules={5}
                             topics={35}
-                            progress={88}
+                            progress={100}
                             status="complete"
                             icon="psychology"
                         />

@@ -1,6 +1,6 @@
 export default function DashboardHeader() {
     return (
-        <header className="h-16 flex items-center justify-between px-8 bg-cream editorial-border-b z-10 sticky top-0">
+        <header className="h-20 flex items-center justify-between px-8 bg-cream editorial-border-b z-10 sticky top-0">
             <div className="flex flex-col gap-0.5">
                 <h1 className="text-xl font-bold text-charcoal">My Subjects</h1>
                 <p className="text-[10px] font-semibold text-charcoal/50 uppercase tracking-wider">
