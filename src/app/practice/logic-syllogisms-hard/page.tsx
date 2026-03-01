@@ -10,17 +10,17 @@ import AnswerPanel from "@/components/practice/AnswerPanel";
 const mockQuestions = [
     {
         id: 1,
-        topic: "Logical Fallacies",
+        topic: "Java Concurrency",
         question:
-            "Analyze the following argument and identify the logical fallacy being committed. Explain why it undermines the conclusion.",
+            "Analyze the following thread execution scenario and identify the concurrency issue. Explain how to resolve it using appropriate synchronization.",
         context:
-            '"Professor Smith suggests that we should increase the budget for the arts department. But Professor Smith drives an expensive sports car and clearly doesn\'t understand the financial struggles of the average student. Therefore, his proposal to increase the arts budget is flawed."',
+            'Two threads (Thread A and Thread B) are simultaneously accessing a shared bank account object to withdraw funds. The withdraw method checks if the balance is sufficient, then sleeps for 100ms before deducting the amount. Both threads pass the balance check before either deducts the amount, resulting in a negative balance.',
         figure: {
             src: "https://lh3.googleusercontent.com/aida-public/AB6AXuB9MuLWML_jbMIvzFlebH0p9mBTdVw1YNz6U-lANG1fwN_KSRH2SYMVqOWGedwgzLavMmG7mI9rMC-eVWVdmSky0MUFzk2fBIMW2DqLuR_Ok6jfxtnwrdJD3lXvUdpG8IAqC6HMCHMPMp8lsug4l5GtoP2uv0Sa1dM-U65kVkMkSgVSgzjQUlO8QjH32p_C8D_VoIqgtaahgXsC1DSwfmBG48TN-KkA1rg6GUJIWNRYfUw9JkGozJMNkCSeBuSdnzt5FAk8O_KcHN0",
-            alt: "Abstract geometric diagram representing logical structure",
-            caption: "Figure 1.1: Argument Structure",
+            alt: "Race Condition Diagram",
+            caption: "Figure 1.1: Race Condition in Thread Execution",
         },
-        tags: ["#CriticalThinking", "#AdHominem"],
+        tags: ["#Java", "#Concurrency", "#RaceCondition"],
     },
     // Add more mock questions as needed
 ];
@@ -91,8 +91,8 @@ export default function PracticePage() {
     return (
         <div className="bg-editorial-bg-question text-editorial-charcoal font-display h-screen flex flex-col overflow-hidden">
             <PracticeHeader
-                subject="Advanced Logic"
-                section="Section 3: Syllogisms"
+                subject="Java Programming"
+                section="Section 3: Concurrency"
                 timeRemaining={timeRemaining}
                 difficulty="Hard"
                 onSubmit={handleSubmit}

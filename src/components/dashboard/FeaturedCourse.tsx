@@ -17,10 +17,10 @@ export default function FeaturedCourse() {
                             <span className="text-xs font-medium text-gray-300">Exam in 5 days</span>
                         </div>
                         <h2 className="text-4xl font-bold text-white mb-4 tracking-tighter font-sans">
-                            Digital Electronics
+                            C++: Advanced Pointers
                         </h2>
                         <p className="text-gray-300 max-w-xl mb-8 text-base leading-relaxed font-light">
-                            Master digital circuit fundamentals. Deep dive into Logic Gates, Boolean Algebra, and K-Maps, which appear in 80% of recent PYQs.
+                            Master C++ memory management. Deep dive into raw pointers, smart pointers, and move semantics, which appear in 80% of advanced interviews.
                         </p>
                         <div className="flex items-center gap-6">
                             <Link href="/concept/xor-gate">

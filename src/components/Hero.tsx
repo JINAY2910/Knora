@@ -23,14 +23,13 @@ export default function Hero() {
 
                     {/* Heading */}
                     <h1 className="text-5xl lg:text-7xl font-serif font-bold tracking-tight text-text-main leading-[1.2] mb-6">
-                        Logic-First<br />
-                        <span className="text-primary whitespace-nowrap">Exam Preparation</span>
+                        Mastering<br />
+                        <span className="text-primary whitespace-nowrap">Java & C++</span>
                     </h1>
 
                     {/* Description */}
                     <p className="text-lg text-gray-600 mb-8 max-w-2xl mx-auto lg:mx-0 font-sans leading-relaxed">
-                        Stop rote memorization. KNORA is the premium AI examiner that decodes your
-                        thinking style, identifies logic gaps, and adapts your curriculum in real-time.
+                        Elevate your programming skills. KNORA is the premium AI examiner that guides you through the intricacies of Java and C++, decoding your thinking style and adapting your curriculum in real-time.
                     </p>
 
                     {/* CTA Buttons */}
@@ -54,7 +53,7 @@ export default function Hero() {
                     <div className="mt-10 flex items-center justify-center lg:justify-start gap-6 text-text-main text-sm font-medium">
                         <div className="flex items-center gap-2">
                             <span className="material-icons-round text-primary text-base">check_circle</span>
-                            <span>Ivy League Logic</span>
+                            <span>Core Concepts & Paradigms</span>
                         </div>
                         <div className="flex items-center gap-2">
                             <span className="material-icons-round text-primary text-base">check_circle</span>
@@ -91,7 +90,7 @@ export default function Hero() {
                                 <div className="absolute -right-6 bottom-10 bg-white border-2 border-background-dark p-4 shadow-[4px_4px_0px_0px_rgba(55,56,51,1)] w-48">
                                     <div className="flex items-center justify-between mb-2">
                                         <span className="text-xs text-gray-500 uppercase tracking-wide font-bold">
-                                            Logic Score
+                                            Code Proficiency
                                         </span>
                                         <span className="text-primary text-xs font-bold">+12%</span>
                                     </div>
@@ -112,7 +111,7 @@ export default function Hero() {
                                                 Next Topic
                                             </div>
                                             <div className="text-xs font-serif font-bold text-white">
-                                                Advanced Logic
+                                                C++ Pointers
                                             </div>
                                         </div>
                                     </div>

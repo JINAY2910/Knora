@@ -5,29 +5,37 @@ import CalloutBox from "@/components/concept/CalloutBox";
 import CodeBlock from "@/components/concept/CodeBlock";
 import ConceptFigure from "@/components/concept/ConceptFigure";
 
-export default function XORGatePage() {
+export default function CppPointersPage() {
     const sections = [
-        { id: "introduction", title: "1. Introduction to XOR", href: "#introduction" },
-        { id: "truth-table", title: "2. Truth Table Analysis", href: "#truth-table" },
-        { id: "implementation", title: "3. Circuit Implementation", href: "#implementation" },
+        { id: "introduction", title: "1. Introduction to Pointers", href: "#introduction" },
+        { id: "memory", title: "2. The Memory Model", href: "#memory" },
+        { id: "implementation", title: "3. Pointer Operations", href: "#implementation" },
         { id: "pyq", title: "4. Common Applications", href: "#pyq" },
-        { id: "exam", title: "5. PYQ References", href: "#exam" },
+        { id: "exam", title: "5. Interview Questions", href: "#exam" },
     ];
 
-    const pythonCode = `def xor_gate(a, b):
-    # The ^ operator is the bitwise XOR in Python
-    return a ^ b
+    const cppCode = `#include <iostream>
 
-# Test Cases
-print(f"0 XOR 0 = {xor_gate(0, 0)}")  # Output: 0
-print(f"0 XOR 1 = {xor_gate(0, 1)}")  # Output: 1`;
+void swap(int* a, int* b) {
+    int temp = *a;
+    *a = *b;
+    *b = temp;
+}
+
+int main() {
+    int x = 10, y = 20;
+    std::cout << "Before swap: x=" << x << " y=" << y << "\\n";
+    swap(&x, &y);
+    std::cout << "After swap: x=" << x << " y=" << y << "\\n";
+    return 0;
+}`;
 
     return (
         <div className="h-screen flex flex-col overflow-hidden bg-cream">
             <ConceptHeader
-                subject="Digital Logic"
-                topic="Logic Gates"
-                conceptTitle="XOR Gate Deep Dive"
+                subject="C++ Programming"
+                topic="Memory Management"
+                conceptTitle="Pointers Deep Dive"
                 userInitials="JD"
                 examMode={true}
             />
@@ -58,23 +66,22 @@ print(f"0 XOR 1 = {xor_gate(0, 1)}")  # Output: 1`;
                                 </span>
                             </div>
                             <h1 className="text-5xl md:text-6xl font-bold text-charcoal tracking-tight mb-6 leading-[1.1] font-sans">
-                                Understanding the XOR Gate: <br />
-                                <span className="text-crimson font-sans">Logic & Applications</span>
+                                Understanding C++ Pointers: <br />
+                                <span className="text-crimson font-sans">Memory & Manipulation</span>
                             </h1>
                             <p className="text-xl text-charcoal-light font-normal leading-relaxed max-w-2xl font-sans">
-                                The Exclusive-OR (XOR) gate is a digital logic gate that gives a true output when the
-                                number of true inputs is odd. It is fundamental to arithmetic circuits.
+                                A pointer is a variable that stores the memory address of another variable. They are fundamental for dynamic memory allocation and efficient array/string manipulation in C++.
                             </p>
                         </div>
 
                         {/* Figure */}
-                        <ConceptFigure figureNumber="FIG 1.1" caption="Standard Symbol for XOR Gate">
+                        <ConceptFigure figureNumber="FIG 1.1" caption="Pointer Reference Model">
                             <div className="z-10 text-center transform group-hover:scale-105 transition-transform duration-700">
                                 <span className="material-symbols-outlined text-8xl text-charcoal group-hover:text-crimson transition-colors duration-500">
-                                    settings_input_component
+                                    memory
                                 </span>
                                 <p className="mt-4 text-base text-charcoal font-bold font-mono tracking-tighter uppercase">
-                                    XOR Logic Diagram
+                                    Memory Architecture
                                 </p>
                             </div>
                         </ConceptFigure>
@@ -82,73 +89,49 @@ print(f"0 XOR 1 = {xor_gate(0, 1)}")  # Output: 1`;
                         {/* Content */}
                         <div className="prose-custom text-charcoal max-w-none">
                             <h2 className="text-3xl text-charcoal font-sans mb-6 mt-10 border-b-2 border-charcoal pb-2 inline-block" id="introduction">
-                                1. Introduction to XOR
+                                1. Introduction to Pointers
                             </h2>
                             <p className="mb-6 text-lg leading-relaxed">
-                                The XOR gate (short for Exclusive OR) differs from the standard OR gate in a critical
-                                way. While an OR gate outputs true if <em>at least one</em> input is true, the XOR gate
-                                requires strict exclusivity.
+                                Every variable you declare in C++ is stored in memory, and this memory location has a distinct address. A pointer is simply a dedicated variable that holds this exact memory address.
                             </p>
 
                             <CalloutBox type="concept">
                                 <p>
-                                    The output is HIGH (1) only if the inputs are{" "}
-                                    <strong className="text-crimson font-bold bg-crimson/10 px-1">different</strong>. If
-                                    both inputs are the same (both 0 or both 1), the output is LOW (0). This property
-                                    makes it an ideal "inequality detector."
+                                    To access the memory address of a variable, use the <strong className="text-crimson font-bold bg-crimson/10 px-1">& (address-of)</strong> operator. To access the value at the address a pointer holds, use the <strong className="text-crimson font-bold bg-crimson/10 px-1">* (dereference)</strong> operator.
                                 </p>
                             </CalloutBox>
 
                             <p className="mb-6 text-lg leading-relaxed">
-                                Mathematically, the XOR operation is represented by the symbol{" "}
-                                <span className="font-mono text-crimson text-xl font-bold bg-white px-1 border border-charcoal/20">
-                                    ⊕
-                                </span>
-                                . So for inputs A and B, the expression is:
+                                By directly interacting with memory, C++ allows you to optimize performance and construct complex data structures like linked lists and trees.
                             </p>
 
-                            <div className="bg-charcoal border-2 border-charcoal p-6 font-mono text-center text-xl text-white my-8 shadow-[6px_6px_0px_0px_rgba(250,39,66,1)]">
-                                Q = A ⊕ B = (A' · B) + (A · B')
-                            </div>
-
-                            <h2 className="text-3xl text-charcoal font-sans mb-6 mt-12 border-b-2 border-charcoal pb-2 inline-block" id="truth-table">
-                                2. Truth Table Analysis
+                            <h2 className="text-3xl text-charcoal font-sans mb-6 mt-12 border-b-2 border-charcoal pb-2 inline-block" id="memory">
+                                2. The Memory Model
                             </h2>
                             <p className="mb-6 text-lg leading-relaxed">
-                                Let's break down the logic states. Notice the pattern in rows 2 and 3 versus rows 1 and
-                                4.
+                                Let's visualize how pointers look in memory. Assume integer `x` is stored at address `0x1000`.
                             </p>
 
-                            {/* Truth Table */}
+                            {/* Memory Table */}
                             <div className="overflow-x-auto my-10 border-2 border-charcoal bg-white">
                                 <table className="w-full text-left border-collapse">
                                     <thead className="text-xs text-charcoal uppercase bg-cream border-b-2 border-charcoal tracking-wider font-bold">
                                         <tr>
-                                            <th className="px-8 py-4 border-r border-charcoal/20">Input A</th>
-                                            <th className="px-8 py-4 border-r border-charcoal/20">Input B</th>
-                                            <th className="px-8 py-4 text-crimson">Output Q (A ⊕ B)</th>
+                                            <th className="px-8 py-4 border-r border-charcoal/20">Variable</th>
+                                            <th className="px-8 py-4 border-r border-charcoal/20">Memory Address</th>
+                                            <th className="px-8 py-4 text-crimson">Stored Value</th>
                                         </tr>
                                     </thead>
                                     <tbody className="divide-y divide-charcoal/20 font-mono text-base">
                                         <tr>
-                                            <td className="px-8 py-4 border-r border-charcoal/20">0</td>
-                                            <td className="px-8 py-4 border-r border-charcoal/20">0</td>
-                                            <td className="px-8 py-4 text-charcoal-light">0</td>
+                                            <td className="px-8 py-4 border-r border-charcoal/20">int x = 5;</td>
+                                            <td className="px-8 py-4 border-r border-charcoal/20">0x1000</td>
+                                            <td className="px-8 py-4 text-charcoal-light">5</td>
                                         </tr>
                                         <tr className="bg-crimson/5">
-                                            <td className="px-8 py-4 border-r border-charcoal/20">0</td>
-                                            <td className="px-8 py-4 border-r border-charcoal/20">1</td>
-                                            <td className="px-8 py-4 font-bold text-crimson">1</td>
-                                        </tr>
-                                        <tr className="bg-crimson/5">
-                                            <td className="px-8 py-4 border-r border-charcoal/20">1</td>
-                                            <td className="px-8 py-4 border-r border-charcoal/20">0</td>
-                                            <td className="px-8 py-4 font-bold text-crimson">1</td>
-                                        </tr>
-                                        <tr>
-                                            <td className="px-8 py-4 border-r border-charcoal/20">1</td>
-                                            <td className="px-8 py-4 border-r border-charcoal/20">1</td>
-                                            <td className="px-8 py-4 text-charcoal-light">0</td>
+                                            <td className="px-8 py-4 border-r border-charcoal/20">int* ptr = &x;</td>
+                                            <td className="px-8 py-4 border-r border-charcoal/20">0x2000</td>
+                                            <td className="px-8 py-4 font-bold text-crimson">0x1000</td>
                                         </tr>
                                     </tbody>
                                 </table>
@@ -156,8 +139,7 @@ print(f"0 XOR 1 = {xor_gate(0, 1)}")  # Output: 1`;
 
                             <CalloutBox type="mistake">
                                 <p>
-                                    Students often confuse XOR with OR when inputs are both 1. Remember: Standard OR
-                                    gives 1 (True) for inputs (1,1), but XOR gives 0 (False).
+                                    Students often forget to initialize pointers. An uninitialized pointer (wild pointer) points to an arbitrary memory location, which can cause segmentation faults if dereferenced!
                                 </p>
                             </CalloutBox>
 
@@ -165,30 +147,28 @@ print(f"0 XOR 1 = {xor_gate(0, 1)}")  # Output: 1`;
                                 3. Code Implementation
                             </h2>
                             <p className="mb-6 text-lg leading-relaxed">
-                                Here is how you might implement an XOR check in Python. This is commonly used in bitwise
-                                operations for encryption or simple checksums.
+                                A classic example of pointer utility is passing by reference to manipulate original variables within a function, as seen in this swap snippet:
                             </p>
 
-                            <CodeBlock language="python" filename="python_xor_example.py" code={pythonCode} />
+                            <CodeBlock language="cpp" filename="pointer_swap.cpp" code={cppCode} />
 
                             <h2 className="text-3xl text-charcoal font-sans mb-6 mt-12 border-b-2 border-charcoal pb-2 inline-block" id="pyq">
-                                4. Exam Context (PYQ)
+                                4. Exam Context (Interview Question)
                             </h2>
 
                             <CalloutBox type="exam">
                                 <div className="flex flex-col md:flex-row items-start gap-6 relative z-10">
                                     <div className="shrink-0">
                                         <span className="inline-block px-3 py-1 bg-crimson text-white text-[11px] font-bold uppercase tracking-widest border border-white">
-                                            Exam 2022
+                                            Google L4
                                         </span>
                                     </div>
                                     <div className="flex-1">
                                         <h4 className="font-sans font-bold text-2xl mb-3 text-white">
-                                            Semester 4 - Digital Electronics (Q3a)
+                                            Memory Leaks & Pointers
                                         </h4>
                                         <p className="text-lg text-gray-300 font-sans mb-6 leading-relaxed border-l-2 border-crimson pl-4">
-                                            "Explain why the XOR gate is referred to as a controlled inverter using a
-                                            timing diagram."
+                                            "Explain how a memory leak occurs when using raw pointers and how std::unique_ptr prevents it."
                                         </p>
                                         <a className="inline-flex items-center group/link" href="#">
                                             <span className="text-white group-hover/link:text-crimson transition-colors font-bold uppercase tracking-widest text-xs flex items-center gap-2 border-b border-white pb-1 group-hover/link:border-crimson">

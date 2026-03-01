@@ -1,0 +1,1757 @@
+Object Oriented Programming 
+CEUE203 
+Comprehensive University Study Module 
+Modules 1–10  |  Java Programming 
+Instructor: Mr. Sagar M. Patel 
+Teaching Scheme: 2 Hrs Theory + 2 Hrs Practical | 3 Credits | 100 Marks 
+How to Use This Module 
+This document is structured for exam-oriented study. Each module covers Learning Objectives, 
+Core Concepts with full explanations, Key Definitions, Exam Questions, and a Summary. Topics 
+marked with ⭐ HIGH EXAM PROBABILITY are critical for university examinations. Use Section 
+9 for exam practice and Section 7 for last-day revision. 
+TABLE OF CONTENTS 
+Module 1 — Introduction & Teaching Scheme 
+Module 2 — Introduction to Java Programming 
+Module 3 — Class Fundamentals 
+Module 4 — String Handling 
+Module 5 — Inheritance, Interfaces & Packages 
+Module 6 — Functional Interfaces & Lambda Expressions 
+Module 7 — Exception Handling 
+Module 8 — Multithreaded Programming 
+Module 9 — File NIO 
+Module 10 — Collection Framework & Generics 
+3 
+4 
+8 
+14 
+18 
+27 
+31 
+37 
+44 
+49 
+MODULE 1 — Introduction & Teaching Scheme 
+Module 1: Introduction & Teaching Scheme 
+1. Learning Objectives 
+• Understand the structure and evaluation scheme of the OOP course. 
+• Know the distribution of marks across theory, practicals, and external examination. 
+• Identify self-study and MOOC requirements for successful course completion. 
+2. Course Overview 
+Object Oriented Programming (CEUE203) is a foundational computer science course that introduces 
+students to Java programming through the lens of object-oriented design. The course runs for 4 hours 
+per week (2 hours theory + 2 hours practical) and carries 3 academic credits, totalling 100 marks. 
+3. Teaching & Evaluation Scheme 
+Component 
+Sub-Component 
+Marks 
+Internal (50) 
+Notes 
+Theory Exam 
+25 
+Internal theory + 2 best-of-3 quizzes + 
+1 assignment 
+Internal (50) 
+Practical 
+25 
+Practical Exam (10) + Term Work (10) 
++ MOOC (5) 
+External (50) 
+University Theory 
+25 
+External (50) 
+End-semester university exam 
+University Practical 
+25 
+Viva + Practical examination 
+4. Self-Study Components 
+The course includes a structured self-study component assessed through practical exercises drawn 
+from the Striver A2Z DSA Course. Students are expected to complete the following: 
+• Step 1 — Learn the Basics: Study Java fundamentals (variables, data types, control flow, 
+functions). 
+• Step 3 — Arrays: Solve easy, medium, and hard level problems on arrays as listed in the 
+DSA course. 
+• MOOC Course: Complete an approved online course (e.g., Coursera, NPTEL) for 5 additional 
+internal marks. 
+Quick Tip 
+Start the MOOC course in the first two weeks of the semester. Certificates take time to generate 
+and must be submitted before the term-work deadline. 
+MODULE 2 — Introduction to Java Programming 
+Module 2: Introduction to Java Programming 
+1. Learning Objectives 
+• Differentiate between Procedural and Object-Oriented Programming. 
+• Explain the history, features, and architecture of Java. 
+• Understand the roles of JVM, JRE, and JDK. 
+• Write, compile, and run a basic Java program. 
+• Apply Java naming conventions and understand data types and literals. 
+2. Introduction 
+Programming is the process of translating a real-world problem into a formal sequence of instructions 
+(an algorithm) that a computer can execute. As Donald Knuth famously observed, a person does not 
+truly understand a concept until they can teach it to a computer. This discipline demands clarity of 
+thought and precision of expression. 
+Two dominant paradigms shape modern programming: Procedure-Oriented Programming (POP) and 
+Object-Oriented Programming (OOP). Java is one of the most widely used OOP languages, designed 
+to run across platforms without modification. 
+3. Core Concepts 
+3.1 Procedural vs. Object-Oriented Programming 
+In procedural programming, a program is divided into functions or procedures. Data flows between 
+these functions, and there is no strict encapsulation. This approach is suitable for smaller programs 
+but becomes difficult to manage as complexity grows. 
+Object-Oriented Programming structures a program around objects — self-contained units that bundle 
+data (attributes) and behaviour (methods) together. An object is an instance of a class, and a class 
+acts as a blueprint. For example, 'Apple' is an object that is-a 'Fruit' (the class). 
+⭐ HIGH EXAM PROBABILITY TOPIC  |  Features of OOP — frequently tested; expect definition or 
+comparison questions. 
+3.2 Features of OOP 
+Feature 
+Description 
+Encapsulation 
+Bundling data and methods within a class; controls access via access 
+modifiers. 
+Data Abstraction 
+Exposing only essential information while hiding implementation details. 
+Inheritance Deriving new classes from existing ones to enable code reuse. 
+Polymorphism Ability of a method or object to take multiple forms (compile-time & runtime). 
+Extensibility Existing code can be extended without modification. 
+Persistence Objects can survive beyond program execution (via serialization/databases). 
+Message Passing Objects communicate by sending and receiving messages (method calls). 
+ 
+3.3 Applications of OOP 
+OOP principles are applied across virtually every domain in modern software engineering. Key 
+application areas include image processing and pattern recognition, intelligent systems and AI, 
+database management systems, web and distributed applications, enterprise resource planning 
+(ERP), mobile computing, and data warehousing and mining. 
+ 
+3.4 What is Java? 
+Java is a general-purpose, class-based, object-oriented programming language originally developed 
+by Sun Microsystems (later acquired by Oracle Corporation). Its defining principle is Write Once, Run 
+Anywhere (WORA) — a Java program compiled on one platform can run on any other platform that 
+has a Java Virtual Machine (JVM) installed. 
+ 
+⭐ HIGH EXAM PROBABILITY TOPIC  |  Java characteristics — commonly asked as a 5-mark 
+definition/explanation question. 
+ 
+Java Characteristic Meaning 
+General Purpose Can be used for any application domain — desktop, web, mobile, 
+embedded. 
+Class-Based / OOP All code is organized inside classes; supports full OOP features. 
+Platform Independent Bytecode runs on any JVM regardless of OS or hardware. 
+Architecturally Neutral No architecture-specific features; bytecode is hardware-independent. 
+Robust Strong type checking, exception handling, and no explicit pointer 
+manipulation. 
+Secure Bytecode verification, class loader, and security manager protect against 
+malicious code. 
+Multithreaded Built-in support for concurrent execution of multiple threads. 
+Dynamic Can load classes at runtime; supports reflection and late binding. 
+Distributed Built-in networking APIs (RMI, sockets) for distributed computing. 
+Interpreted Bytecode is interpreted by the JVM at runtime. 
+High Performance JIT (Just-In-Time) compiler converts frequently executed bytecode to 
+native code. 
+ 
+3.5 History of Java — Key Milestones 
+Version Year Key Features 
+1996 
+Initial release; AWT, Applets, basic Java APIs. 
+Java 1.0 
+2004 
+Java 5.0 (J2SE 
+1.5) 
+Generics, Annotations, Enums, Autoboxing, varargs, enhanced for-loop. 
+Java 8 (LTS) 
+2014 
+Lambda expressions, Streams API, Date & Time API, Optional, default 
+methods. 
+Java 9 
+2017 
+Module system (Project Jigsaw), JShell (REPL). 
+Java 11 (LTS) 
+2018 
+HTTP Client API, removed Java EE modules. 
+Java 17 (LTS) 
+2021 
+Sealed classes (standard), strong encapsulation of JDK internals. 
+Java 21 (LTS) 
+2023 
+Virtual threads (final), pattern matching, sequenced collections. 
+Sept 2025 
+Java 25 (LTS, 
+expected) 
+Stable string templates, structured concurrency, improved memory model. 
+3.6 Java Components: JVM, JRE, and JDK 
+Understanding the three-layer Java platform architecture is essential for any Java developer. 
+The Java Virtual Machine (JVM) is the core engine that executes Java bytecode. It is platform-specific 
+— different JVM implementations exist for Windows, Linux, and macOS — but bytecode is universal. 
+The JVM performs bytecode verification, class loading, memory management (garbage collection), 
+and execution. 
+The Java Runtime Environment (JRE) packages the JVM together with the standard Java class 
+libraries (java.lang, java.util, etc.) and other support files needed to run Java programs. End users who 
+only need to run Java applications install the JRE. 
+The Java Development Kit (JDK) is the full development package. It contains the JRE plus the compiler 
+(javac), debugger (jdb), documentation generator (javadoc), and other development tools. Developers 
+must install the JDK. 
+Diagram: Java Architecture 
+JDK (javac, javadoc, tools) → compiles source (.java) → Bytecode (.class) → JRE → JVM 
+executes bytecode → Platform-specific machine code. The JDK is the superset; JRE is a subset; 
+JVM is inside the JRE. 
+3.7 Java Program Lifecycle 
+The lifecycle of a Java program follows these steps: (1) The programmer writes source code in a .java 
+file. (2) The javac compiler translates it into platform-neutral bytecode, stored in a .class file. (3) At 
+runtime, the JVM's Class Loader loads the required .class files. (4) The Bytecode Verifier checks the 
+bytecode for security and correctness. (5) The Interpreter/JIT compiler executes the bytecode, 
+converting it to native machine instructions. 
+3.8 Data Types in Java 
+Category 
+Type 
+Size 
+Range 
+Integer 
+byte 
+1 byte -128 to 127 
+Integer 
+short 
+2 bytes -32,768 to 32,767 
+int 
+4 bytes -2,147,483,648 to 2,147,483,647 
+Integer 
+Integer 
+long 
+8 bytes -9.2×10^18 to 9.2×10^18 
+Floating Point 
+float 
+4 bytes 
+~7 decimal digits precision 
+Floating Point 
+double 
+8 bytes 
+~15 decimal digits precision 
+Character 
+char 
+2 bytes 
+Unicode character (0–65,535) 
+Boolean 
+boolean 
+1 bit 
+true or false 
+3.9 Naming Conventions 
+Java follows strict naming conventions that improve code readability and professionalism. Package 
+names use all-lowercase letters (e.g., java.util). Class names begin with an uppercase letter using 
+CamelCase (e.g., StudentRecord). Variables and method names begin with a lowercase letter using 
+camelCase (e.g., studentName, getAge()). Constants are written in ALL_UPPERCASE with 
+underscores (e.g., MAX_SIZE). Exception class names end in 'Exception' for checked exceptions or 
+'Error' for fatal system errors. 
+4. Key Definitions 
+JVM 
+Java Virtual Machine — an abstract computing machine that enables Java bytecode to run on 
+any platform. 
+JRE 
+Java Runtime Environment — includes the JVM and standard class libraries; needed to run 
+Java applications. 
+JDK 
+Java Development Kit — includes JRE plus development tools (compiler, debugger); needed to 
+develop Java programs. 
+WORA 
+Write Once, Run Anywhere — Java's platform independence principle; compiled bytecode 
+runs on any JVM. 
+Bytecode 
+Intermediate representation of Java code, compiled by javac, executed by the JVM. 
+5. Important Points for Quick Revision 
+• Java = General Purpose + Class-Based + Object-Oriented + Platform Independent + 
+Multithreaded + Robust + Secure + Distributed. 
+• JDK ⊃ JRE ⊃ JVM (JDK is the largest superset). 
+• Java source files have .java extension; bytecode files have .class extension. 
+• Java 8 and 11 are the most widely used LTS versions; Java 17 and 21 are the latest LTS 
+versions. 
+• OOP Features (mnemonic): EPIM-EG-PC = Encapsulation, Polymorphism, Inheritance, 
+Message Passing, Extensibility, Genericity, Persistence, Concurrency. 
+• Java does not use pointers explicitly — this enhances security and robustness. 
+6. Common Mistakes Students Make 
+• Confusing JVM (execution engine) with JRE (runtime environment) with JDK (development 
+kit). Remember: JDK includes everything. 
+• Writing 'main' method signature incorrectly. Correct signature: public static void main(String[] 
+args) or public static void main(String args[]). 
+• Forgetting that Java is case-sensitive — 'String' (with capital S) is a class; 'string' is not a valid 
+type. 
+• Thinking Java is fully interpreted — modern Java uses a JIT compiler for high performance. 
+7. Exam Questions 
+2-Mark Questions 
+Q1. What is WORA? Why is Java called platform-independent? 
+Q2. Differentiate between JVM, JRE, and JDK. 
+[2 Marks] 
+[2 Marks] 
+Q3. List any four features of OOP. 
+[2 Marks] 
+5-Mark Questions 
+Q4. Explain the lifecycle of a Java program from source code to execution, with a neat 
+diagram. 
+Q5. Explain any five characteristics of Java that make it suitable for enterprise 
+application development. 
+[5 
+Marks] 
+[5 
+Marks] 
+10-Mark Questions 
+Q6. Compare Procedural-Oriented Programming and Object-Oriented Programming. 
+List all features of OOP with explanations and real-life examples. 
+Q7. Write a Java program to compute simple and compound interest. Explain the 
+structure of a Java program with its lifecycle. 
+[10 
+Marks] 
+[10 
+Marks] 
+8. Summary 
+Java is a robust, secure, platform-independent, object-oriented programming language. Its architecture 
+(JDK → JRE → JVM) enables the WORA principle. OOP organizes programs around classes and 
+objects and supports encapsulation, inheritance, polymorphism, and abstraction. Java's evolution from 
+version 1.0 (1996) to Java 25 (expected 2025) reflects continuous innovation, with Java 8, 11, 17, and 
+21 being the most significant LTS releases. 
+MODULE 3 — Class Fundamentals 
+Module 3: Class Fundamentals 
+1. Learning Objectives 
+• Define a class and explain its components. 
+• Understand constructors — default, parameterized, and overloaded. 
+• Use the 'this' keyword, static keyword, final keyword, and instance initializer blocks. 
+• Explain garbage collection and the finalize() method. 
+• Describe Java inner classes and their types. 
+2. Introduction 
+A class is the fundamental unit of object-oriented programming in Java. It serves as the template or 
+blueprint from which objects (instances) are created. Every Java program must have at least one class, 
+and every statement must be inside a class. Understanding how classes, constructors, and object 
+lifecycle work is critical to building well-structured Java applications. 
+3. Core Concepts 
+⭐ HIGH EXAM PROBABILITY TOPIC  |  Constructors & Constructor Overloading — one of the 
+most frequently tested topics in university exams. 
+3.1 Anatomy of a Class 
+A class declaration in Java typically contains the following components in order: an optional access 
+modifier (public or default), the class keyword, the class name (capitalized by convention), an optional 
+extends clause for inheritance, optional implements clause for interfaces, and the class body enclosed 
+in braces. Inside the class body, you define fields (data members), constructors, and methods. 
+Example: Student Class Structure 
+public class Student {   private int stdIdNo;          
+private field   public Student() { }            
+// private field   private String stdName;        
+// 
+// default constructor   public int getStdIdNo() { return 
+stdIdNo; }   // getter   public void setStdIdNo(int id) { this.stdIdNo = id; }  // setter } 
+3.2 Constructors 
+A constructor is a special method that is automatically invoked when an object is created using the 
+new keyword. Its primary purpose is to initialize the object's state (i.e., set initial values for fields). 
+Constructors must have the same name as the class and have no return type, not even void. They 
+cannot be declared abstract, final, static, or synchronized. 
+3.2.1 Default (No-Argument) Constructor 
+A constructor with no parameters is called a default constructor. If a programmer does not explicitly 
+define any constructor, the Java compiler automatically provides a default constructor that initializes 
+all fields to their default values (0 for numeric types, null for objects, false for boolean). Once the 
+programmer defines any constructor, the compiler no longer provides the default one. 
+3.2.2 Parameterized Constructor 
+A parameterized constructor accepts one or more arguments, allowing the programmer to supply 
+specific initial values for the object's fields at the time of creation. This is preferred when objects must 
+be initialized with meaningful data rather than default values. 
+3.2.3 Constructor Overloading 
+Constructor overloading is the practice of defining multiple constructors within a single class, each with 
+a different parameter list (differing in number, type, or order of parameters). The Java compiler selects 
+the appropriate constructor based on the arguments provided during object instantiation. This allows 
+flexible object creation. 
+Constructor vs. Method 
+Constructors: same name as class, no return type, called automatically with 'new', called only 
+once per object. Methods: can have any name, must have return type (or void), called explicitly, 
+can be called multiple times. 
+3.3 The 'this' Keyword 
+The this keyword in Java is a reference variable that points to the current object instance. It has two 
+primary uses. First, it resolves naming ambiguity between instance variables and local variables or 
+parameters that share the same name (this.fieldName refers to the instance variable). Second, this() 
+can be used inside a constructor to call another constructor of the same class, enabling constructor 
+chaining and reducing code duplication. 
+3.4 The 'static' Keyword 
+The static modifier can be applied to variables, methods, nested classes, and initializer blocks. A static 
+variable (class variable) is shared by all instances of a class — there is only one copy of it in memory, 
+regardless of how many objects are created. A static method can only access other static members 
+directly and cannot use the this or super keywords. Static blocks (also called static initializers) are 
+executed exactly once when the class is first loaded by the JVM, before any constructors run. 
+3.5 Instance Initializer Block 
+An instance initializer block is a block of code inside a class but outside any method, written inside 
+curly braces. It is executed every time a new object is created, just before the constructor runs. It is 
+useful for code that is common to all constructors. The order of execution is: static blocks (once) → 
+instance initializer blocks → constructors. 
+Block Type 
+When Executed 
+How Many Times 
+Can Access Instance 
+Members? 
+When class is loaded 
+Once per class 
+No 
+Static Block 
+Instance Initializer 
+Block 
+When object is created, 
+before constructor 
+Yes 
+Constructor 
+When object is created 
+Every object 
+creation 
+Every object 
+creation 
+Yes 
+⭐ HIGH EXAM PROBABILITY TOPIC  |  Order of execution: static block → instance block → 
+constructor — classic exam question. 
+3.6 The 'final' Keyword 
+The final keyword serves three distinct purposes. When applied to a variable, it makes that variable a 
+constant — its value cannot be changed once assigned. When applied to a method, it prevents 
+subclasses from overriding that method. When applied to a class, it prevents the class from being 
+subclassed (inherited). A final variable must be initialized either at declaration, in an instance initializer 
+block, or in every constructor. 
+3.7 Garbage Collection 
+Java manages memory automatically through a process called garbage collection. The JVM 
+periodically identifies objects in the heap that are no longer referenced by any live part of the program 
+and reclaims their memory. Unlike C (which uses free()) or C++ (which uses delete()), the Java 
+programmer does not need to manually deallocate memory. The programmer can suggest garbage 
+collection by calling System.gc(), but this does not guarantee immediate collection. An object becomes 
+eligible for garbage collection when: its reference is set to null, its reference is reassigned to another 
+object, or it is created anonymously without any reference. 
+3.8 Java Inner Classes 
+An inner class (or nested class) is a class defined within another class or interface. Java supports four 
+types of inner classes, each with distinct characteristics and use cases. 
+Type 
+Where Defined 
+Key Characteristics 
+Member Inner Class 
+Inside outer class, 
+outside methods 
+Can access all (including private) outer class 
+members. Needs outer class instance. 
+Anonymous Inner 
+Class 
+At the point of object 
+creation 
+Local Inner Class 
+Inside a method 
+No name; defined and instantiated simultaneously. 
+Used for quick one-time implementations. 
+Scoped to the method; can access effectively final 
+local variables. 
+Static Nested Class 
+Inside outer class with 
+static modifier 
+4. Key Definitions 
+Cannot access non-static outer class members. Does 
+not need outer class instance. 
+Constructor 
+A special method with the same name as the class, no return type, invoked 
+automatically on object creation to initialize state. 
+Overloading 
+Defining multiple methods or constructors with the same name but different parameter 
+signatures within the same class. 
+this 
+keyword 
+A reference variable in Java that refers to the current object; used to resolve naming 
+conflicts and for constructor chaining. 
+static 
+A non-access modifier that associates a member with the class itself rather than with any 
+instance. Static members exist even without object creation. 
+Garbage 
+Collection 
+Automatic process in JVM that reclaims memory occupied by objects no longer 
+reachable by the program. 
+Inner 
+Class 
+A class declared inside another class; can access the outer class members and helps 
+logically group related code. 
+5. Important Points for Quick Revision 
+• A constructor has no return type (not even void) and its name is the same as the class. 
+• If no constructor is defined, the compiler provides a default no-arg constructor. 
+• Once any constructor is defined, the compiler does NOT provide a default constructor. 
+• this() call must be the first statement in a constructor. 
+• Static members are shared across all objects; instance members are per-object. 
+• Static blocks run once on class load; instance blocks run on each object creation. 
+• final variable: must be initialized before use; final method: cannot be overridden; final class: 
+cannot be subclassed. 
+• Garbage collection is automatic; System.gc() is a request, not a command. 
+6. Common Mistakes Students Make 
+• Giving a return type to a constructor — this turns it into a regular method, not a constructor. 
+• Forgetting to call super() or this() as the first statement in a constructor chain. 
+• Trying to access instance variables inside a static method — static methods cannot access 
+non-static members directly. 
+• Assuming System.gc() immediately frees memory — garbage collection is non-deterministic. 
+7. Exam Questions 
+2-Mark Questions 
+Q1. What is a constructor? How is it different from a regular method? 
+Q2. Explain the use of the 'this' keyword with an example. 
+[2 Marks] 
+[2 Marks] 
+Q3. What is garbage collection? How can an object become eligible for GC? 
+[2 Marks] 
+5-Mark Questions 
+Q4. Explain constructor overloading with a Java program demonstrating at least three 
+overloaded constructors. 
+Q5. What are inner classes? Explain any two types of inner classes with examples. 
+[5 
+Marks] 
+[5 Marks] 
+10-Mark Questions 
+Q6. Explain static variables, static methods, and static blocks with examples. Describe 
+the order of execution of static and instance initializer blocks and constructors. 
+Q7. Write a Java program with a Student class containing overloaded constructors, 
+getter/setter methods, and a static counter to track the total number of objects created. 
+Explain each concept used. 
+[10 
+Marks] 
+[10 
+Marks] 
+8. Summary 
+Classes are the building blocks of Java programs. Constructors initialize objects and support 
+overloading for flexible creation. The this keyword references the current object. The static keyword 
+creates class-level members shared across instances. Static blocks run once on class loading, 
+instance blocks run before each constructor, and constructors complete the initialization. The final 
+keyword creates constants and prevents overriding or inheritance. Garbage collection automates 
+memory management. Inner classes allow logically nested code structures with access to enclosing 
+class members. 
+MODULE 4 — String Handling 
+Module 4: String Handling 
+1. Learning Objectives 
+• Understand the String class and its immutability. 
+• Use important String class methods for text processing. 
+• Differentiate between String, StringBuffer, and StringBuilder. 
+• Apply string manipulation techniques: concatenation, splitting, joining, and regex. 
+• Perform string tokenization. 
+2. Introduction 
+Strings are among the most frequently used data types in any programming language. In Java, a String 
+is an object that represents an immutable sequence of characters. The class is defined in the java.lang 
+package, meaning it is available automatically without any import statement. Understanding string 
+handling is critical for text processing, data validation, parsing, and almost every real-world Java 
+application. 
+3. Core Concepts 
+⭐ HIGH EXAM PROBABILITY TOPIC  |  String vs. StringBuffer vs. StringBuilder — a classic 
+comparison question in 5 or 10-mark exams. 
+3.1 String Immutability 
+The most important characteristic of the String class is its immutability. Once a String object is created, 
+its content cannot be modified. Any operation that appears to modify a string (such as concatenation 
+or replace) actually creates a new String object in memory. This has performance implications when 
+many string modifications are needed — repeated concatenation in a loop can generate a large 
+number of intermediate String objects. 
+3.2 String Methods 
+Method 
+Description 
+length() 
+Returns the number of 
+characters. 
+Example 
+"Hello".length() → 5 
+charAt(i) 
+Returns the character at index i. 
+"Hello".charAt(1) → 'e' 
+substring(s, e) 
+Returns substring from index s 
+to e-1. 
+"Hello".substring(1, 4) → "ell" 
+equals(s) 
+Compares content (case
+sensitive). 
+"abc".equals("abc") → true 
+equalsIgnoreCase(s) 
+Content comparison, ignoring 
+case. 
+"ABC".equalsIgnoreCase("abc") → true 
+compareTo(s) 
+Lexicographic comparison; 
+returns 0 if equal. 
+"abc".compareTo("abd") → -1 
+indexOf(c) 
+Returns first index of 
+character/string. 
+"Hello".indexOf('l') → 2 
+toLowerCase() 
+Converts to lowercase. 
+"HELLO".toLowerCase() → "hello" 
+toUpperCase() 
+Converts to uppercase. 
+trim() 
+"hello".toUpperCase() → "HELLO" 
+Removes leading and trailing 
+whitespace. 
+"  hi  ".trim() → "hi" 
+replace(old, new) 
+Replaces all occurrences. 
+"abcabc".replace('a','x') → "xbcxbc" 
+3.3 StringBuffer Class 
+StringBuffer is the mutable alternative to String. It is defined in the java.lang package and represents 
+a mutable sequence of characters. Unlike String, modifications to a StringBuffer object do not create 
+new objects — they modify the existing object in place. StringBuffer is synchronized, making it thread
+safe and suitable for use in multi-threaded environments. However, synchronization adds overhead, 
+making it slower than StringBuilder in single-threaded contexts. 
+Key StringBuffer methods include append() for adding content, insert() for inserting at a specific 
+position, replace() for replacing a range of characters, delete() for removing characters, reverse() for 
+reversing the sequence, capacity() for querying the internal buffer size, and ensureCapacity() for pre
+allocating space. 
+3.4 StringBuilder Class 
+StringBuilder is similar to StringBuffer in that it is mutable and supports all the same methods. The 
+critical difference is that StringBuilder is not synchronized and therefore not thread-safe. In a single
+threaded application, StringBuilder should always be preferred over StringBuffer because it is faster 
+due to the absence of synchronization overhead. 
+Feature 
+String 
+StringBuffer 
+Mutability 
+StringBuilder 
+Immutable 
+Mutable 
+Thread Safety 
+Mutable 
+Thread-safe 
+(immutable) 
+Thread-safe 
+(synchronized) 
+Not thread-safe 
+Performance 
+Slowest (new 
+object each 
+change) 
+Moderate 
+Fastest (no sync overhead) 
+Use Case 
+Fixed, constant 
+text 
+Multi-threaded mutable 
+string operations 
+3.5 String Manipulation Techniques 
+Single-threaded mutable string 
+operations 
+Java provides several built-in techniques for common string operations. Concatenation can be done 
+using the + operator or the concat() method. Formatted strings can be produced using String.format(), 
+which works like printf in C. A string can be split into an array of tokens using the split(regex) method, 
+which accepts a regular expression as the delimiter. Multiple strings can be joined with a delimiter 
+using String.join(delimiter, elements). Characters or substrings can be replaced using replace() (for 
+exact matches) or replaceAll() (for regex patterns). 
+3.6 Regular Expressions (Regex) 
+Regular expressions are patterns used to match character sequences within strings. Java provides the 
+java.util.regex package with Pattern and Matcher classes for advanced regex processing. Commonly 
+used regex symbols include: . (matches any character), * (zero or more), + (one or more), ? (zero or 
+one), \d (any digit), \w (word character: alphanumeric + underscore), and \s (whitespace). For simple 
+validation, the String.matches(regex) method can be used directly without Pattern/Matcher. 
+3.7 String Tokenization 
+String tokenization is the process of splitting a string into smaller units called tokens based on a 
+delimiter. The most modern approach is to use the split(regex) method on a String, which returns an 
+array of tokens. A legacy approach uses the StringTokenizer class from java.util, which is simpler but 
+less flexible. For most new code, split() is recommended. 
+4. Key Definitions 
+Immutability 
+A property of String objects in Java whereby their value cannot be changed after 
+creation; any 'modification' produces a new object. 
+StringBuffer 
+A mutable, thread-safe sequence of characters in Java; modifications do not create 
+new objects. 
+StringBuilder 
+A mutable, non-thread-safe sequence of characters; preferred over StringBuffer in 
+single-threaded code due to better performance. 
+Regex 
+Regular Expression — a sequence of characters that forms a search pattern, used for string 
+matching and validation. 
+Tokenization 
+Splitting a string into meaningful substrings (tokens) based on a delimiter pattern. 
+5. Important Points for Quick Revision 
+• String objects are stored in the String Constant Pool; == compares references, .equals() 
+compares content. 
+• String: immutable. StringBuffer: mutable + thread-safe. StringBuilder: mutable + NOT thread
+safe. 
+• For performance in loops with string manipulation, always use StringBuilder. 
+• split() returns String[]. String.join() creates a single String from an array/list. 
+• String.format() uses format specifiers like %s (string), %d (integer), %f (float). 
+6. Exam Questions 
+2-Mark Questions 
+Q1. Why is String immutable in Java? What happens when you concatenate two 
+strings? 
+Q2. Differentiate between StringBuffer and StringBuilder. 
+[2 
+Marks] 
+[2 Marks] 
+5-Mark Questions 
+Q3. Write a Java program that demonstrates at least five String class methods with 
+appropriate output. 
+Q4. Explain regular expressions in Java. Write a program to validate a mobile number 
+using regex. 
+[5 
+Marks] 
+[5 
+Marks] 
+10-Mark Questions 
+Q5. Compare String, StringBuffer, and StringBuilder with code examples 
+demonstrating their behaviour. Discuss use cases and performance considerations. 
+7. Summary 
+[10 
+Marks] 
+Strings in Java are immutable objects defined in java.lang. The String class provides rich methods for 
+text operations. StringBuffer offers mutability with thread-safety, while StringBuilder offers mutability 
+with better single-threaded performance. String manipulation techniques include concatenation, 
+formatting, splitting, joining, and regex-based operations. Tokenization breaks strings into meaningful 
+tokens, useful in parsers and text processors. 
+MODULE 5 — Inheritance, Interfaces & Packages 
+Module 5: Inheritance, Interfaces & Packages 
+1. Learning Objectives 
+• Explain inheritance and its forms; use extends and super. 
+• Understand method overriding, dynamic dispatch, and runtime polymorphism. 
+• Describe abstract classes and their role in abstraction. 
+• Define and implement interfaces; understand multiple inheritance via interfaces. 
+• Create, organize, and import Java packages. 
+2. Introduction 
+Inheritance is one of the four pillars of OOP. It establishes an 'is-a' relationship between a parent class 
+(superclass) and a child class (subclass), enabling the subclass to inherit and extend the superclass's 
+data and behaviour. Interfaces take abstraction further by defining contracts that multiple unrelated 
+classes can implement, supporting multiple inheritance safely. Packages organize classes into logical 
+namespaces, preventing naming conflicts and enabling modular design. 
+3. Core Concepts 
+⭐ HIGH EXAM PROBABILITY TOPIC  |  Inheritance types, method overriding, abstract class vs. 
+interface — high-frequency exam topics. 
+3.1 Forms of Inheritance 
+Type 
+Description 
+Single 
+One subclass inherits from one superclass. 
+Yes 
+Java Support 
+Multilevel 
+A subclass is itself a superclass for another 
+class (A→B→C). 
+Yes 
+Hierarchical 
+Multiple subclasses inherit from one 
+superclass. 
+Yes 
+Multiple 
+One class inherits from multiple 
+superclasses. 
+Hybrid 
+Combination of two or more types. 
+No (causes diamond problem) — 
+only via interfaces 
+Yes (via interfaces for the multiple 
+part) 
+Multipath 
+A class inherits from multiple paths that lead 
+to the same base. 
+No directly — via interfaces 
+3.2 Using extends and Member Access 
+A subclass is declared using the extends keyword. The subclass inherits all non-private members 
+(fields and methods) of the superclass. Private members are not accessible directly in the subclass — 
+they must be accessed indirectly through getter and setter methods. Constructors and static/instance 
+initializer blocks are not inherited. 
+3.3 The super Keyword 
+The super keyword provides a reference to the immediate parent class. It has two primary uses. First, 
+super() calls a specific constructor of the superclass, enabling the subclass to initialize the inherited 
+state. This call must be the first statement in the subclass constructor. Second, super.methodName() 
+explicitly calls the overridden version of a method in the superclass, useful when the subclass wants 
+to extend (rather than replace) the parent's behaviour. 
+3.4 Method Overriding & Dynamic Dispatch 
+Method overriding occurs when a subclass defines an instance method with the same name, return 
+type, and parameter list as a method in the superclass. At runtime, if a superclass reference variable 
+holds a subclass object, the JVM calls the overridden method in the subclass. This mechanism, known 
+as dynamic method dispatch (or runtime polymorphism), is a cornerstone of flexible, extensible OOP 
+design. 
+Example 
+Light light = new TubeLight();  // Superclass reference, subclass object light.switchOn();  // Calls 
+TubeLight's switchOn() at runtime → Runtime Polymorphism 
+3.5 Covariant Return Types 
+Java allows a method in a subclass to override a method in its superclass and return a type that is a 
+subclass of the original return type. This is called a covariant return type. For example, if a superclass 
+method returns Shape, the overriding method in the subclass may return Circle (a subclass of Shape). 
+This makes overriding more type-specific and eliminates the need for casting in the caller. 
+3.6 Abstract Classes 
+An abstract class is a class declared with the abstract keyword. It may contain abstract methods 
+(methods declared without an implementation body) and concrete methods (with full implementations). 
+An abstract class cannot be instantiated — it serves as a partially implemented template for 
+subclasses. Any subclass of an abstract class must either implement all abstract methods or declare 
+itself abstract as well. 
+Use abstract classes when: you want to share code among several closely related classes, you need 
+to declare protected or package-private methods, or you want to declare non-static/non-final fields. 
+⭐ HIGH EXAM PROBABILITY TOPIC  |  Abstract class vs. Interface — one of the most popular 
+comparison questions in university exams. 
+3.7 Interfaces 
+An interface is a completely abstract type that defines a contract — a set of method signatures that 
+implementing classes must provide. By default, all methods in an interface are public and abstract, 
+and all fields are public, static, and final (constants). A class implements an interface using the 
+implements keyword and must provide bodies for all abstract methods. 
+Java 8 introduced default and static methods in interfaces. A default method has an implementation 
+inside the interface and is inherited by implementing classes (used to add new methods without 
+breaking existing implementations). A static method in an interface belongs to the interface itself, not 
+to instances of implementing classes. 
+Feature 
+Abstract Class 
+Keyword 
+Interface 
+abstract class 
+interface 
+Instantiation 
+Cannot be instantiated 
+Cannot be instantiated 
+Methods 
+Can have abstract and concrete 
+methods 
+Abstract (default); default & static 
+since Java 8 
+Fields 
+Can have instance variables 
+Constructors 
+Can have constructors 
+Only public static final constants 
+Multiple Inheritance 
+Cannot have constructors 
+Not supported (single extends) 
+Access Modifiers 
+Any modifier 
+Supported (class can implement 
+multiple interfaces) 
+Methods: public (implicit). Fields: 
+public static final 
+Inheritance Keyword 
+extends 
+3.8 Packages 
+implements 
+A package in Java is a namespace container that groups related classes and interfaces. Packages 
+serve several important purposes: they prevent name collisions between classes in different libraries, 
+enable controlled access (package-private access), promote code reuse, and facilitate easier software 
+distribution. By convention, package names are written in all lowercase, often following the reverse 
+domain naming convention (e.g., com.company.product). 
+A package is declared using the package keyword, which must be the first statement in a source file. 
+Classes in other packages are accessed using the import statement, either by importing a specific 
+class (import java.util.Scanner) or all classes in a package (import java.util.*). Static imports (import 
+static) allow direct use of static members without qualifying with the class name. 
+4. Key Definitions 
+Inheritance 
+An OOP mechanism where a subclass derives properties and behaviour from a 
+superclass, promoting code reuse. 
+Method 
+Overriding 
+Redefining a method in a subclass with the same signature as in the superclass, 
+enabling runtime polymorphism. 
+Dynamic 
+Dispatch 
+The JVM mechanism that determines which overridden method to call at runtime 
+based on the actual object type, not the reference type. 
+Abstract 
+Class 
+A class declared with 'abstract' that may have abstract methods; cannot be 
+instantiated; serves as a template for subclasses. 
+Interface 
+A contract defining abstract methods that implementing classes must provide; supports 
+multiple inheritance in Java. 
+Package 
+A namespace grouping related classes and interfaces; prevents name conflicts and 
+controls access. 
+5. Important Points for Quick Revision 
+• Java supports single, multilevel, and hierarchical inheritance directly; multiple inheritance is 
+supported only through interfaces. 
+• A class can extend only one class but can implement multiple interfaces. 
+• super() must be the first statement in a subclass constructor. 
+• Method overriding requires the same method name, same return type (or covariant), same 
+parameter list. 
+• Abstract class: can have state (instance variables) and partial implementation. Interface: only 
+constants and abstract/default/static methods. 
+• All interface fields are implicitly public static final; all interface methods are implicitly public 
+abstract (except default/static). 
+6. Exam Questions 
+2-Mark Questions 
+Q1. What is dynamic method dispatch? How is it related to runtime polymorphism? 
+Q2. What is the role of the 'super' keyword in inheritance? 
+[2 Marks] 
+[2 Marks] 
+Q3. Why does Java not support multiple inheritance through classes? How is it 
+achieved? 
+[2 
+Marks] 
+5-Mark Questions 
+Q4. Compare abstract class and interface in Java. When would you prefer one over 
+the other? 
+Q5. Explain method overriding with a complete Java example. What are the rules for 
+overriding? 
+[5 
+Marks] 
+[5 
+Marks] 
+10-Mark Questions 
+Q6. Write a Java program to demonstrate multilevel inheritance, method overriding, 
+and dynamic method dispatch. Explain the output and how the JVM resolves method 
+calls at runtime. 
+[10 
+Marks] 
+Q7. Explain packages in Java. Write a program with two packages where one 
+package's class is used in another package, demonstrating access modifiers and 
+import statements. 
+[10 
+Marks] 
+7. Summary 
+Inheritance enables code reuse through the 'is-a' relationship. Java supports single, multilevel, and 
+hierarchical inheritance. The super keyword accesses the parent class constructor and members. 
+Method overriding drives runtime polymorphism via dynamic dispatch. Abstract classes provide partial 
+implementations, while interfaces define pure contracts and enable multiple inheritance. Packages 
+organize code into namespaces, controlling access and preventing conflicts. 
+MODULE 6 — Functional Interfaces & Lambda Expressions 
+Module 6: Functional Interfaces & Lambda Expressions 
+1. Learning Objectives 
+• Understand functional programming concepts introduced in Java 8. 
+• Define and use functional interfaces. 
+• Write and apply lambda expressions in various contexts. 
+• Use built-in functional interfaces from java.util.function. 
+• Understand sealed interfaces and their use in pattern matching. 
+2. Introduction 
+Java 8 introduced functional programming capabilities to the Java language, most notably through 
+lambda expressions and functional interfaces. These features allow programmers to treat behaviour 
+(functions) as data — passing methods as arguments, returning them from other methods, and storing 
+them in variables. This leads to more concise, readable, and flexible code, especially when working 
+with collections, streams, and event-driven programming. 
+3. Core Concepts 
+⭐ HIGH EXAM PROBABILITY TOPIC  |  Lambda expressions and functional interfaces — 
+introduced in Java 8 and commonly tested in modern Java exams. 
+3.1 Functional Interface 
+A functional interface is an interface that contains exactly one abstract method. It may have any 
+number of default or static methods. The @FunctionalInterface annotation is used to declare a 
+functional interface; the compiler will report an error if more than one abstract method is present. 
+Functional interfaces serve as the target type for lambda expressions — a lambda expression is 
+essentially a concise implementation of the single abstract method. 
+3.2 Common Built-in Functional Interfaces (java.util.function) 
+Interface 
+Method 
+Purpose 
+Predicate<T> 
+boolean test(T t) 
+Example Lambda 
+Test a condition; returns 
+true/false 
+Function<T, R> 
+R apply(T t) 
+x -> x > 10 
+Transform/map one type 
+to another 
+s -> s.length() 
+Consumer<T> 
+void accept(T t) 
+Perform an action; no 
+return value 
+s -> System.out.println(s) 
+Supplier<T> 
+T get() 
+Supply a value; takes no 
+arguments 
+() -> new Student() 
+BiFunction<T,U,R> 
+R apply(T t, U u) 
+Function with two inputs 
+UnaryOperator<T> 
+(a, b) -> a + b 
+T apply(T t) 
+Function where input and 
+output same type 
+3.3 Lambda Expressions 
+s -> s.toUpperCase() 
+A lambda expression provides a concise way to represent an anonymous function — a block of code 
+with parameters that can be passed to methods or stored in variables. The syntax consists of a 
+parameter list, the arrow operator (->), and a body. If the body is a single expression, braces and the 
+return keyword can be omitted. If it contains multiple statements, braces are required. 
+Lambda Syntax Variations 
+(parameters) -> expression                         
+return value; }       
+* x                                         
+// single expression (parameters) -> { statements; 
+// block body () -> System.out.println("Hello")                  
+// no parameters x -> x 
+// one parameter, inferred type 
+3.4 Real-World Use Cases of Lambdas 
+Lambda expressions are most commonly used with the Java Streams API and Collections API. For 
+example, sorting a list of names alphabetically can be written as: list.sort((a, b) -> a.compareTo(b)). 
+Filtering a list of numbers greater than 10: list.stream().filter(x -> x > 10). Mapping strings to their 
+lengths: list.stream().map(s -> s.length()). These patterns replace verbose anonymous inner class 
+implementations with single-line expressions. 
+3.5 Sealed Interfaces (Java 17+) 
+A sealed interface (introduced in Java 15 as preview, standardized in Java 17) restricts which classes 
+may implement it. The permitted implementors are listed explicitly using the permits clause. Each 
+permitted class must be declared as final, sealed, or non-sealed. Sealed interfaces improve API design 
+by providing precise control over the class hierarchy, and they enable exhaustive pattern matching in 
+switch expressions — the compiler can verify that all permitted types are handled. 
+4. Key Definitions 
+Functional 
+Interface 
+An interface with exactly one abstract method; serves as the target type for lambda 
+expressions; optionally annotated with @FunctionalInterface. 
+Lambda 
+Expression 
+An anonymous function represented as (parameters) -> body; provides a concise 
+implementation of a functional interface's abstract method. 
+Predicate<T> 
+A functional interface with test(T t) method that evaluates a boolean condition on an 
+input. 
+Sealed 
+Interface 
+An interface that explicitly restricts the set of classes that may implement it using the 
+permits clause. 
+5. Important Points for Quick Revision 
+• Functional interface = exactly ONE abstract method. Can have multiple default/static 
+methods. 
+• @FunctionalInterface annotation is optional but recommended for documentation and 
+compiler checking. 
+• Predicate tests conditions, Function transforms data, Consumer performs actions, Supplier 
+produces values. 
+• Lambda syntax: () -> {} for no args and block body; x -> x*x for single arg single expression. 
+• Sealed interfaces (Java 17) use 'permits' to restrict implementors; permitted classes must be 
+final/sealed/non-sealed. 
+6. Exam Questions 
+2-Mark Questions 
+Q1. What is a functional interface? Give an example from java.util.function. 
+Q2. Write the syntax of a lambda expression. What replaces a lambda expression in 
+pre-Java-8 code? 
+[2 Marks] 
+[2 
+Marks] 
+5-Mark Questions 
+Q3. Write a Java program using lambda expressions with Predicate, Function, and 
+Consumer interfaces. Show at least one use case for each. 
+10-Mark Questions 
+Q4. Explain functional interfaces and lambda expressions in Java 8. Write a program 
+that sorts a list of Employee objects by salary using a lambda, filters employees with 
+salary > 50000, and prints their names using a Consumer. Explain each step. 
+[5 
+Marks] 
+[10 
+Marks] 
+7. Summary 
+Java 8 introduced functional programming through functional interfaces and lambda expressions. A 
+functional interface has one abstract method and acts as the target type for a lambda. Built-in interfaces 
+in java.util.function (Predicate, Function, Consumer, Supplier) cover the most common patterns. 
+Lambda expressions replace verbose anonymous inner class syntax with concise one-liners. Java 17 
+added sealed interfaces to control the class hierarchy and enable exhaustive pattern matching. 
+  
+MODULE 7 — Exception Handling 
+Module 7: Exception Handling 
+1. Learning Objectives 
+• Understand what exceptions are and why handling them is necessary. 
+• Distinguish between checked and unchecked exceptions. 
+• Use try-catch-finally blocks, throw and throws keywords. 
+• Apply try-with-resources for automatic resource management. 
+• Create custom exceptions and understand exception propagation. 
+2. Introduction 
+An exception is an event that disrupts the normal flow of a program's execution. Without exception 
+handling, a runtime error would cause the program to terminate abruptly with an error message. Java 
+provides a robust exception handling framework that allows programs to gracefully detect, report, and 
+recover from errors. This separation of error-handling code from normal logic makes programs more 
+readable and maintainable. 
+3. Core Concepts 
+⭐ HIGH EXAM PROBABILITY TOPIC  |  try-catch-finally, throw vs. throws, checked vs. unchecked 
+exceptions — almost always appears in 5-mark or 10-mark questions. 
+3.1 Exception Hierarchy 
+All exceptions and errors in Java are objects. The root of the exception hierarchy is the Throwable 
+class. It has two direct subclasses: Error and Exception. Errors (e.g., OutOfMemoryError, 
+StackOverflowError) represent serious system-level problems that a program typically cannot recover 
+from. Exceptions are further divided into checked exceptions (subclasses of Exception, excluding 
+RuntimeException) and unchecked exceptions (subclasses of RuntimeException). 
+Hierarchy 
+Throwable ├── Error (OutOfMemoryError, StackOverflowError — not recoverable) └── 
+Exception     ├── Checked (IOException, SQLException, FileNotFoundException — must handle)     
+└── RuntimeException / Unchecked (NullPointerException, ArithmeticException, 
+ArrayIndexOutOfBoundsException — optional to handle) 
+3.2 Checked vs. Unchecked Exceptions 
+Property 
+Checked Exception 
+Detected at 
+Unchecked Exception 
+Compile time 
+Runtime 
+Must handle? 
+Yes — try-catch or throws required 
+No — optional 
+Inherits from 
+Exception (not RuntimeException) 
+Examples 
+RuntimeException 
+IOException, SQLException, 
+FileNotFoundException 
+NullPointerException, 
+ArithmeticException, 
+ArrayIndexOutOfBoundsException 
+Typical cause 
+External resource issues (file, DB, 
+network) 
+Programming logic errors 
+3.3 try-catch-finally Block 
+The primary mechanism for handling exceptions is the try-catch-finally construct. The try block contains 
+the code that might throw an exception. One or more catch blocks follow, each catching a specific 
+exception type and providing a recovery strategy. The finally block is optional and contains code that 
+must execute regardless of whether an exception occurred — typically used for cleanup (closing files, 
+releasing connections). 
+Multiple exceptions can be caught in a single catch block using the multi-catch syntax introduced in 
+Java 7: catch(IOException | SQLException e). Catch blocks are evaluated in order; more specific 
+exceptions should be caught before more general ones. 
+3.4 throw and throws Keywords 
+The throw keyword is used inside a method body to explicitly throw an exception object. It is typically 
+used to enforce business rules (e.g., throw new IllegalArgumentException("Age cannot be negative")). 
+The method immediately transfers control to the nearest enclosing catch block. 
+The throws keyword appears in a method's signature to declare that the method may propagate one 
+or more checked exceptions to its caller. The caller must then either handle the exception with try
+catch or declare it with throws in its own signature. 
+throw vs. throws 
+throw: used inside a method body to explicitly throw an exception (throw new Exception()). throws: 
+used in method signature to declare that the method may throw that exception (public void read() 
+throws IOException). 
+3.5 Try-With-Resources (Java 7) 
+The try-with-resources statement automatically closes resources (any object implementing 
+AutoCloseable) when the try block exits, whether normally or due to an exception. This eliminates the 
+boilerplate of a finally block just for closing resources and guarantees closure even in exception 
+scenarios. Multiple resources can be declared, separated by semicolons; they are closed in reverse 
+order of declaration. 
+3.6 final, finally, and finalize — Differences 
+Keyword 
+Type 
+Purpose 
+final 
+Used With 
+Keyword 
+Prevent reassignment (variable), overriding 
+(method), subclassing (class) 
+Variables, methods, 
+classes 
+finally 
+Block 
+Executes after try-catch regardless of 
+outcome; used for cleanup 
+try-catch statement 
+finalize() 
+Method 
+Called by GC before object is destroyed; used 
+for cleanup (deprecated) 
+3.7 Custom Exceptions 
+Objects 
+Java allows programmers to define their own exception classes to represent application-specific error 
+conditions. A custom checked exception extends Exception; a custom unchecked exception extends 
+RuntimeException. Custom exceptions improve code clarity by giving domain-specific names to error 
+conditions. They typically contain constructors that accept a message string passed to the parent class 
+via super(message). 
+3.8 Exception Propagation 
+When a method throws an exception that it does not catch, the exception propagates up the call stack 
+to the calling method. If the calling method also does not catch it, it propagates further up. This 
+continues until either the exception is caught by some method in the stack, or it reaches the main() 
+method, at which point the JVM prints the stack trace and terminates the program. 
+3.9 Exception Handling in Method Overriding 
+There are specific rules governing exceptions in overriding. If the superclass method does not declare 
+any checked exception, the overriding subclass method cannot declare a checked exception (but may 
+declare unchecked exceptions). If the superclass method declares a checked exception, the overriding 
+method may declare the same exception, a subclass of that exception, or no exception at all. It may 
+not declare a broader (parent) checked exception. 
+4. Key Definitions 
+Exception 
+An event that disrupts normal program flow; represented as an object of a class derived 
+from Throwable. 
+Checked 
+Exception 
+An exception checked at compile time that must be declared or handled; inherits 
+from Exception (not RuntimeException). 
+Unchecked 
+Exception 
+A runtime exception not checked at compile time; inherits from 
+RuntimeException; optional to handle. 
+throw 
+A keyword used inside a method to explicitly throw an exception object. 
+throws 
+A keyword in a method signature that declares the checked exceptions a method may 
+propagate to its caller. 
+Exception 
+Propagation 
+The mechanism by which an uncaught exception travels up the call stack until it 
+is caught or causes program termination. 
+5. Important Points for Quick Revision 
+• Checked exceptions must be handled (try-catch) or declared (throws). Unchecked exceptions 
+do not require either. 
+• finally block ALWAYS executes, even if a return statement is inside try/catch. 
+• throw (keyword) throws an exception object; throws (clause) declares that a method may 
+throw. 
+• try-with-resources (Java 7): automatically closes AutoCloseable resources; preferred over 
+finally for resource management. 
+• Custom exception for checked: extends Exception. For unchecked: extends 
+RuntimeException. 
+• Overriding rule: subclass cannot throw broader checked exceptions than the superclass 
+method. 
+6. Exam Questions 
+2-Mark Questions 
+Q1. Differentiate between checked and unchecked exceptions with two examples 
+each. 
+Q2. What is the purpose of the 'finally' block? Will it execute if a return statement is in 
+the try block? 
+[2 
+Marks] 
+[2 
+Marks] 
+Q3. What is the difference between 'throw' and 'throws' keywords? 
+[2 Marks] 
+5-Mark Questions 
+Q4. Write a Java program that demonstrates try-catch-finally with multiple catch blocks. 
+Include an example of try-with-resources. 
+Q5. Write a Java program defining a custom exception 'InvalidAgeException'. Throw it 
+in a method that validates age and catch it in main(). 
+[5 
+Marks] 
+[5 
+Marks] 
+10-Mark Questions 
+Q6. Explain the exception handling mechanism in Java. Explain the exception 
+hierarchy, checked vs. unchecked exceptions, exception propagation, and the rules for 
+exception handling in method overriding, with code examples. 
+7. Summary 
+[10 
+Marks] 
+Exception handling in Java separates error detection from normal logic. The Throwable hierarchy 
+divides exceptions into Errors (system-level, non-recoverable) and Exceptions (checked and 
+unchecked). The try-catch-finally construct provides structured recovery. The throw keyword explicitly 
+raises exceptions; throws declares propagated checked exceptions. Try-with-resources automates 
+cleanup. Custom exceptions improve domain-specific error communication. Exception propagation 
+travels up the call stack until caught. 
+MODULE 8 — Multithreaded Programming 
+Module 8: Multithreaded Programming 
+1. Learning Objectives 
+• Understand multitasking: process-based vs. thread-based. 
+• Explain the thread lifecycle and its states. 
+• Create threads by extending Thread class and implementing Runnable. 
+• Use thread methods: start, sleep, join, getName, setPriority. 
+• Understand thread priority and scheduling. 
+2. Introduction 
+Multithreading is the ability of a CPU to execute multiple threads of execution concurrently within a 
+single process. In Java, multithreading allows a program to perform multiple tasks simultaneously — 
+for example, downloading a file while updating a progress bar. The Java platform provides built-in 
+language-level support for multithreading through the Thread class and Runnable interface, making 
+concurrent programming more accessible than in many other languages. 
+3. Core Concepts 
+⭐ HIGH EXAM PROBABILITY TOPIC  |  Thread lifecycle diagram and its 5 states — almost always 
+asked in exams as a diagram + explanation question. 
+3.1 Multitasking: Process-Based vs. Thread-Based 
+Property 
+Process-Based 
+Unit of execution 
+Process (heavyweight) 
+Thread-Based 
+Memory 
+Thread (lightweight) 
+Each process has its own address 
+space 
+Communication cost 
+High (IPC mechanisms needed) 
+Threads share the same address 
+space 
+Context switch cost 
+Low (shared memory) 
+Higher 
+Lower 
+Example 
+Running Excel and Chrome 
+simultaneously 
+Multiple tabs loading in one browser 
+3.2 Thread Lifecycle (5 States) 
+A Java thread passes through five states during its existence, controlled by the JVM. 
+State 
+Description 
+Entry Condition 
+New Thread object created but start() not yet 
+called. 
+new Thread() 
+Runnable Thread ready to run; waiting for CPU 
+time slice. 
+After start() is called 
+Running Thread is actively executing (selected 
+by thread scheduler). 
+Scheduler picks this thread 
+Blocked/Waiting Thread alive but not eligible to run; 
+waiting for a resource or lock. 
+sleep(), wait(), I/O operation 
+Terminated Thread has finished execution; run() 
+method has returned. 
+run() method exits normally or exception 
+thrown 
+ 
+3.3 Creating Threads 
+There are two ways to create a thread in Java. The first is to extend the Thread class and override its 
+run() method. The second is to implement the Runnable interface and pass an instance to a Thread 
+object's constructor. Implementing Runnable is generally preferred because: it does not use up the 
+single inheritance slot (a class can extend another class and still be Runnable), and it promotes 
+separation of the task (Runnable) from the thread execution mechanism. 
+ 
+Method 1: Extending Thread 
+class MyThread extends Thread {   public void run() { System.out.println("Thread running"); } } 
+MyThread t = new MyThread(); t.start();   // Calls run() via JVM 
+ 
+Method 2: Implementing Runnable 
+class MyTask implements Runnable {   public void run() { System.out.println("Task running"); } } 
+Thread t = new Thread(new MyTask()); t.start(); 
+ 
+3.4 Important Thread Methods 
+Method Description 
+start() Starts a new thread; JVM calls run() internally. Cannot be called twice on the 
+same thread. 
+run() Contains the task logic; called by JVM when thread is scheduled. 
+sleep(ms) Pauses execution for specified milliseconds; throws InterruptedException. 
+join() Waits for a thread to die before continuing. 
+getName() / setName() Gets or sets the thread's name. 
+getPriority() / setPriority() Gets or sets the thread's priority (1–10). 
+currentThread() Static method returning a reference to the currently executing thread. 
+getId() Returns the unique ID of the thread. 
+ 
+3.5 Thread Priority & Scheduling 
+Every Java thread has a priority, an integer value between 1 (MIN_PRIORITY) and 10 
+(MAX_PRIORITY), with the default being 5 (NORM_PRIORITY). The thread scheduler uses priorities 
+as hints when deciding which thread to execute next, but the JVM specification does not guarantee 
+strictly priority-based scheduling — the actual behavior depends on the underlying OS. 
+Important Note 
+Calling start() twice on the same Thread object throws IllegalThreadStateException. Always 
+create a new Thread object to restart a task. 
+4. Key Definitions 
+Thread 
+A lightweight sub-process; the smallest unit of concurrent execution within a process. 
+Runnable 
+A functional interface with a single run() method; represents a task to be executed by a 
+thread. 
+Thread 
+Scheduler 
+The JVM component that decides which runnable thread should execute next; 
+typically based on priority and time-slicing. 
+Context 
+Switch 
+The process of saving the state of a running thread and loading the state of another 
+thread to continue its execution. 
+5. Important Points for Quick Revision 
+• Two ways to create threads: extend Thread OR implement Runnable. Runnable is preferred. 
+• start() → creates new thread, calls run() via JVM. Calling run() directly does NOT create a 
+new thread. 
+• Thread states: New → Runnable → Running → Blocked → Terminated. 
+• Thread priority: MIN=1, NORM=5, MAX=10. Higher priority threads get more CPU time but 
+not guaranteed. 
+• sleep() suspends the current thread; it releases the CPU but does not release any held locks. 
+6. Exam Questions 
+2-Mark Questions 
+Q1. What is the difference between start() and run() in Java threads? 
+Q2. List the five states of a Java thread lifecycle. 
+[2 Marks] 
+[2 Marks] 
+5-Mark Questions 
+Q3. Explain the thread lifecycle with a state diagram. Write a Java program 
+demonstrating thread creation using both Thread class and Runnable interface. 
+[5 
+Marks] 
+10-Mark Questions 
+Q4. Compare process-based and thread-based multitasking. Explain thread states, 
+thread priority, and the sleep() and join() methods with code examples. 
+7. Summary 
+[10 
+Marks] 
+Multithreading in Java enables concurrent execution of lightweight threads within a process, sharing 
+memory and resources. Threads are created by extending Thread or implementing Runnable. The 
+thread lifecycle has five states: New, Runnable, Running, Blocked/Waiting, and Terminated. The start() 
+method initiates a new thread; run() is its task body. Thread priority provides scheduling hints. Key 
+methods include sleep(), join(), getName(), and setPriority(). 
+MODULE 9 — File NIO 
+Module 9: File NIO (New Input/Output) 
+1. Learning Objectives 
+• Understand the Path interface and Files class for file operations. 
+• Differentiate Byte Streams and Character Streams. 
+• Explain serialization and deserialization. 
+• Understand NIO fundamentals: Buffer, Channel, and Selector. 
+• Use DirectoryStream and file walking (walkFileTree). 
+2. Introduction 
+Java NIO (New I/O), introduced in Java 1.4 and significantly enhanced in Java 7 with NIO.2, is a 
+collection of APIs for intensive I/O operations. Unlike the traditional java.io package (which is stream
+oriented and blocking), NIO is buffer-oriented and supports non-blocking I/O, making it far more 
+efficient for building high-performance servers and file processing applications that need to handle 
+thousands of concurrent connections. 
+3. Core Concepts 
+⭐ HIGH EXAM PROBABILITY TOPIC  |  NIO vs. IO comparison table — frequently tested. Also: 
+Buffer-Channel-Selector architecture. 
+3.1 Path Interface 
+The Path interface, from java.nio.file, represents a filesystem path. It replaces the older File class with 
+a more flexible and feature-rich API. Key methods include getFileName() (returns the final element of 
+the path), getParent() (returns the parent directory path), resolve() (combines two paths), normalize() 
+(removes redundant . and .. elements), and toAbsolutePath() (converts a relative path to an absolute 
+one). 
+3.2 Files Class 
+The Files class (java.nio.file) provides static utility methods for file and directory operations. Common 
+operations include checking existence and type (exists(), isDirectory(), isRegularFile()), creating files 
+and directories (createFile(), createDirectory()), copying and moving (copy(), move()), reading and 
+writing (readAllLines(), write()), and deleting (delete(), deleteIfExists()). 
+3.3 Byte Streams and Character Streams 
+Java I/O uses two parallel hierarchies for reading and writing data. Byte Streams deal with raw binary 
+data (images, audio, executables) and are based on InputStream and OutputStream (e.g., 
+FileInputStream, FileOutputStream). Character Streams deal with text data in Unicode and are based 
+on Reader and Writer (e.g., FileReader, FileWriter, BufferedReader, PrintWriter). For text files, 
+character streams are preferred because they handle character encoding correctly. 
+3.4 Serialization 
+Serialization is the process of converting a Java object's state into a byte stream, enabling it to be 
+saved to a file, transmitted over a network, or stored in a database. Deserialization is the reverse — 
+reconstructing the object from the byte stream. For a class to be serializable, it must implement the 
+Serializable marker interface (from java.io). Fields marked as transient are excluded from serialization. 
+ObjectOutputStream and ObjectInputStream are used for writing and reading serialized objects 
+respectively. 
+3.5 NIO Fundamentals: Buffer, Channel, Selector 
+Buffer 
+A Buffer is a fixed-size container for primitive data (ByteBuffer, CharBuffer, IntBuffer, etc.). Data must 
+be written to a buffer before being sent to a channel, or read from a buffer after being received from a 
+channel. Every buffer has three key properties: capacity (maximum elements), position (index of next 
+read/write), and limit (boundary of valid data). The flip() method switches a buffer from write mode to 
+read mode. 
+Channel 
+A Channel represents an open connection to an I/O source or destination (file, socket, device). Unlike 
+streams (which are one-directional), channels are bidirectional — they can both read and write. 
+Channels always work in conjunction with Buffers. FileChannel is used for file I/O; SocketChannel and 
+ServerSocketChannel are for network I/O. 
+Selector 
+A Selector allows a single thread to monitor multiple Channels simultaneously. It is the cornerstone of 
+Java NIO's non-blocking I/O model. A Channel registers itself with a Selector specifying which I/O 
+events it is interested in (connect, accept, read, write). The Selector's select() call blocks until at least 
+one registered channel is ready, allowing one thread to serve many connections efficiently. 
+3.6 IO vs. NIO Comparison 
+Aspect 
+Java I/O (java.io) 
+Model 
+Stream-oriented 
+Java NIO (java.nio) 
+Buffer-oriented 
+Blocking 
+Always blocking 
+Non-blocking supported 
+Directionality 
+One-way streams 
+Thread model 
+Bidirectional channels 
+One thread per connection 
+Performance 
+Lower for high concurrency 
+One thread can manage many channels 
+(Selector) 
+Main classes 
+Higher for servers/large file I/O 
+InputStream, OutputStream, Reader, 
+Writer 
+Buffer, Channel, Selector, Path, Files 
+Best for 
+Simple apps, small files, console I/O 
+4. Key Definitions 
+Servers, large-scale file processing, 
+network apps 
+Serialization 
+Converting an object's state into a byte stream for storage or transmission; requires 
+implementing Serializable. 
+Buffer 
+(NIO) 
+A fixed-size container for primitive-type data; has capacity, position, and limit 
+properties. 
+Channel 
+(NIO) 
+Bidirectional connection to an I/O source; works with Buffers; supports non-blocking 
+I/O. 
+Selector 
+(NIO) 
+Component that allows a single thread to monitor and manage multiple channels 
+simultaneously. 
+5. Exam Questions 
+2-Mark Questions 
+Q1. What is the difference between a Byte Stream and a Character Stream? 
+Q2. What is serialization? Which interface must a class implement to support it? 
+[2 Marks] 
+[2 Marks] 
+5-Mark Questions 
+Q3. Compare Java I/O (java.io) and Java NIO (java.nio) in terms of their programming 
+model, blocking behaviour, and use cases. Provide a table. 
+10-Mark Questions 
+Q4. Explain the Buffer-Channel-Selector architecture of Java NIO. Write a Java 
+program demonstrating file reading using FileChannel and ByteBuffer. Also explain the 
+Path interface and Files class with examples. 
+[5 
+Marks] 
+[10 
+Marks] 
+6. Summary 
+Java NIO provides high-performance I/O through its buffer-oriented, non-blocking model. The Path 
+interface and Files class modernize file operations. Byte Streams handle binary data; Character 
+Streams handle text. Serialization converts objects to byte streams for persistence or transfer. NIO's 
+core architecture — Buffer (data container), Channel (bidirectional I/O link), and Selector (multiplexer) 
+— enables efficient single-threaded management of multiple connections, making it ideal for high
+concurrency applications. 
+MODULE 10 — Collection Framework & Generics 
+Module 10: Collection Framework & Generics 
+1. Learning Objectives 
+• Understand the structure and hierarchy of the Java Collection Framework. 
+• Use List, Set, and Map implementations appropriately. 
+• Choose the right collection class based on requirements. 
+• Iterate through collections and perform sorting and searching. 
+• Understand generics: generic classes, methods, bounded types, and wildcards. 
+2. Introduction 
+The Java Collection Framework (JCF) is a unified architecture that provides a set of interfaces and 
+classes for storing, organizing, and manipulating groups of objects. Instead of writing custom data 
+structures, developers use battle-tested, optimized implementations. The JCF reduces programming 
+effort, improves code reuse, ensures type safety through Generics, and provides efficient algorithms 
+for common operations like sorting and searching. 
+3. Core Concepts 
+⭐ HIGH EXAM PROBABILITY TOPIC  |  Collection hierarchy (List/Set/Map), comparison of 
+implementations (ArrayList vs. LinkedList, HashMap vs. TreeMap) — very frequently tested. 
+3.1 Collection Framework Hierarchy 
+The root of the collection hierarchy is the Iterable interface, followed by the Collection interface. 
+Collection is extended by three primary sub-interfaces: List (ordered, allows duplicates), Set 
+(unordered, no duplicates), and Queue (ordered, FIFO typically). Map is a separate hierarchy — not a 
+child of Collection — that stores key-value pairs. 
+3.2 List Interface and Implementations 
+Class 
+Internal Structure 
+Duplicates 
+Access 
+Thread-Safe 
+ArrayList 
+Dynamic array 
+Yes 
+Best For 
+O(1) random 
+access 
+No 
+Frequent reads, random 
+access 
+LinkedList 
+Doubly linked list 
+Yes 
+O(n) sequential 
+No 
+Frequent insert/delete; 
+also a Deque 
+Vector 
+Dynamic array 
+Yes 
+O(1) random 
+access 
+Yes 
+(synchronized) 
+Legacy; avoid in new 
+code 
+Stack Extends Vector Yes LIFO 
+(push/pop) 
+Yes Stack operations; prefer 
+Deque 
+ 
+3.3 Set Interface and Implementations 
+Class Ordering Null 
+Allowed 
+Duplicates Thread-Safe Best For 
+HashSet No guaranteed order One null No No Fast operations; order 
+doesn't matter 
+LinkedHashSet Insertion order 
+maintained 
+One null No No Unique elements 
+preserving insertion order 
+TreeSet Sorted (natural or 
+Comparator) 
+No No No Always-sorted unique 
+elements 
+ 
+3.4 Map Interface and Implementations 
+Class Key Ordering Null Keys Null Values Thread-Safe Best For 
+HashMap No ordering One null key Multiple nulls No Fast key-value 
+storage; general use 
+LinkedHashMap Insertion order One null key Multiple nulls No Cache with 
+predictable iteration 
+order 
+TreeMap Sorted order No null key Multiple nulls No Sorted key-value data; 
+range queries 
+Hashtable No ordering No null key No null value Yes 
+(synchronized) 
+Legacy; use 
+ConcurrentHashMap 
+instead 
+ 
+⭐ HIGH EXAM PROBABILITY TOPIC  |  List vs. Set vs. Map summary table and 'choose the right 
+collection' scenario questions. 
+ 
+3.5 Choosing the Right Collection — Real-World Scenarios 
+Scenario Requirement Recommended Class 
+User Registration System Unique usernames, fast 
+lookups 
+HashSet 
+User Session History Order of login preserved LinkedHashSet 
+Product Catalog Allow duplicates, random 
+access 
+ArrayList 
+Task Queue FIFO processing LinkedList (as Queue) 
+Undo/Redo in Editor LIFO stack operations Stack / ArrayDeque 
+Employee Records ID → Employee object 
+mapping 
+HashMap 
+LRU Cache Key-value, predictable 
+eviction order 
+LinkedHashMap 
+Bank Transactions (sorted) 
+Always sorted by timestamp 
+TreeMap / TreeSet 
+Thread-safe concurrent 
+access 
+Multi-threaded reads/writes 
+ConcurrentHashMap 
+3.6 Introduction to Generics 
+Generics, introduced in Java 5, enable types (classes and interfaces) to be parameterized. Instead of 
+operating on raw Object types (which require casting and are not type-safe), generics allow classes 
+and methods to operate on any specified type while providing compile-time type checking. The type 
+parameter is specified in angle brackets, e.g., List<String> creates a list that can only hold String 
+objects. 
+Generic Classes 
+A generic class is declared with one or more type parameters in angle brackets after the class name 
+(class Box<T>). Inside the class, T is used as a placeholder for the actual type that will be specified 
+when the class is instantiated (Box<Integer> intBox = new Box<>()). 
+Bounded Type Parameters 
+Sometimes it is useful to restrict the types that can be used as type parameters. An upper-bounded 
+wildcard restricts a type to be a specific class or any of its subclasses (class NumberBox<T extends 
+Number>). A lower-bounded wildcard does the reverse. The wildcard symbol ? represents an unknown 
+type (List<?> can hold a list of any type). 
+Type Erasure 
+Java implements generics through a mechanism called type erasure. The compiler uses generic type 
+information to enforce type safety at compile time, but then removes (erases) all generic type 
+information from the compiled bytecode. At runtime, generic types are replaced by their bounded types 
+(or Object if unbounded). This ensures backward compatibility with older Java versions. 
+4. Key Definitions 
+Collection 
+Framework 
+A unified architecture of interfaces and classes in java.util for storing and 
+manipulating groups of objects. 
+List 
+An ordered Collection that allows duplicate elements and provides index-based access. 
+Set 
+A Collection that does not allow duplicate elements; models the mathematical set abstraction. 
+Map 
+A key-value pair structure (not a subtype of Collection); keys are unique; values may be 
+duplicated. 
+Generics 
+A mechanism in Java allowing classes and methods to operate on parameterized types, 
+providing compile-time type safety. 
+Type 
+Erasure 
+The process by which the compiler removes generic type information from bytecode 
+after type checking, for backward compatibility. 
+5. Important Points for Quick Revision 
+• ArrayList: O(1) random access, O(n) insert/delete in middle. LinkedList: O(1) insert/delete, 
+O(n) access. 
+• HashSet: no order; LinkedHashSet: insertion order; TreeSet: sorted order. 
+• HashMap: no order; LinkedHashMap: insertion order; TreeMap: sorted by key. 
+• HashMap allows one null key and multiple null values. TreeMap does not allow null keys. 
+Hashtable allows neither null keys nor null values. 
+• Generics provide compile-time type checking; type erasure removes generic info at runtime. 
+• Prefer ConcurrentHashMap over Hashtable/Collections.synchronizedMap for concurrent 
+access. 
+6. Common Mistakes Students Make 
+• Using ArrayList for frequent insertions/deletions in the middle — LinkedList is more efficient 
+for this. 
+• Comparing objects with == instead of .equals() in collections — HashMap and HashSet use 
+.equals() and hashCode() for equality. 
+• Forgetting to override both hashCode() and equals() in custom objects used as HashMap 
+keys. 
+• Using raw types (List list) instead of parameterized types (List<String> list) — loses compile
+time safety. 
+7. Exam Questions 
+2-Mark Questions 
+Q1. What is the difference between ArrayList and LinkedList? When would you use 
+each? 
+[2 
+Marks] 
+Q2. What is the difference between HashSet, LinkedHashSet, and TreeSet? 
+[2 Marks] 
+Q3. What is type erasure in Java Generics? 
+[2 Marks] 
+5-Mark Questions 
+Q4. Explain the Collection Framework hierarchy. Describe the key differences between 
+List, Set, and Map interfaces. 
+[5 
+Marks] 
+Q5. Write a Java program using HashMap to store and retrieve student records (roll 
+number as key, name as value). Iterate using entrySet(). 
+10-Mark Questions 
+Q6. Write a Java program demonstrating the use of ArrayList, LinkedList, HashSet, 
+TreeSet, HashMap, and TreeMap. For each, show insertion, deletion, and iteration. 
+Explain the differences in ordering and performance. 
+[5 
+Marks] 
+[10 
+Marks] 
+Q7. Explain Generics in Java. Write a generic class 'Pair<T, U>' that stores two values 
+of potentially different types. Demonstrate bounded type parameters and wildcards. 
+[10 
+Marks] 
+8. Summary 
+The Java Collection Framework provides ready-made, type-safe data structures. List (ArrayList, 
+LinkedList) maintains ordered, duplicate data. Set (HashSet, LinkedHashSet, TreeSet) enforces 
+uniqueness with varying ordering. Map (HashMap, LinkedHashMap, TreeMap) stores key-value pairs. 
+Choosing the right implementation depends on ordering needs, thread safety, null handling, and 
+access patterns. Generics add compile-time type safety, and type erasure maintains backward 
+compatibility. The JCF significantly reduces development effort for data-structure-intensive 
+applications. 
+PREDICTED LONG-ANSWER EXAM QUESTIONS 
+Predicted Long-Answer Questions — University Exam 
+Preparation 
+Based on the syllabus coverage and typical university examination patterns, the following questions 
+have a high probability of appearing in your end-semester examination. Study each topic thoroughly 
+and practice writing structured answers. 
+⭐ HIGH EXAM PROBABILITY TOPIC  |  Study these questions carefully — they cover the highest
+weight topics in this course. 
+Category 1: 10-Mark Questions (Most Probable) 
+Q1. Explain the concept of inheritance in Java. With examples, describe single, 
+multilevel, and hierarchical inheritance. Explain method overriding, the super keyword, 
+and dynamic method dispatch. Show how runtime polymorphism is achieved. 
+Q2. Write a Java program to demonstrate exception handling using try-catch-finally, 
+throw, and throws. Create a custom checked exception 'InsufficientBalanceException' 
+for a BankAccount class. Show exception propagation across three method levels. 
+[10 
+Marks] 
+[10 
+Marks] 
+Q3. Explain the Java Collection Framework hierarchy. Write programs demonstrating 
+ArrayList, HashSet, and HashMap. Provide a comparative table of List, Set, and Map 
+interfaces. Explain when to choose each implementation. 
+[10 
+Marks] 
+Q4. Compare Java I/O (java.io) and Java NIO (java.nio) with a detailed table. Explain 
+Buffer, Channel, and Selector in NIO. Write a program using FileChannel and 
+ByteBuffer to copy a file. 
+[10 
+Marks] 
+Q5. Explain constructors in Java: default, parameterized, and overloaded. Show 
+constructor chaining using this() and super(). Explain static blocks, instance initializer 
+blocks, and their execution order relative to constructors. 
+[10 
+Marks] 
+Category 2: 5-Mark Questions (Probable) 
+Q6. Explain abstract class and interface in Java. Provide a comparison table. Write a 
+program where an interface is implemented by two different classes and objects are 
+processed polymorphically. 
+[5 
+Marks] 
+ 
+Q7. Explain lambda expressions and functional interfaces in Java 8. Write a program 
+using Predicate, Function, and Consumer to process a list of integers. 
+[5 
+Marks] 
+ 
+Q8. Explain the Thread lifecycle in Java with a state diagram. Write a program creating 
+two threads using the Runnable interface that print numbers 1–5 with a 500ms sleep 
+between each. 
+[5 
+Marks] 
+ 
+Q9. Compare String, StringBuffer, and StringBuilder. Write a program showing the 
+immutability of String and mutability of StringBuilder. Benchmark the difference in a 
+loop. 
+[5 
+Marks] 
+ 
+Q10. Explain Generics in Java. Write a generic stack class (MyStack<T>) with push(), 
+pop(), and isEmpty() methods. Demonstrate it with Integer and String types. 
+[5 
+Marks] 
+ 
+Category 3: 2-Mark Questions (Certain) 
+ 
+Q11. Define: (a) Encapsulation  (b) Polymorphism  (c) Abstraction  (d) Inheritance [2 Marks] 
+ 
+Q12. What is the difference between method overloading and method overriding? [2 Marks] 
+ 
+Q13. What is a marker interface? Give two examples. [2 Marks] 
+ 
+Q14. What is the difference between == and .equals() for String comparison in Java? [2 Marks] 
+ 
+Q15. What is the final keyword? Explain its use with variables, methods, and classes. [2 Marks] 
+ 
+Study Strategy Recommendation 
+Prioritize Modules 3, 5, 7, and 10 — they carry the highest weight in most OOP examinations. 
+Write code on paper for practice since the university practical exam requires handwritten or 
+terminal-executed code. Always include comments in your programs during exams to 
+demonstrate understanding. 
+ 

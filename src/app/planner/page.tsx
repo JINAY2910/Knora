@@ -13,8 +13,8 @@ import QuickQuizCard from "@/components/planner/QuickQuizCard";
 const initialTasks = [
     {
         id: "1",
-        title: "Review: Derivatives & Rates of Change",
-        description: "Focus on chain rule application in complex polynomials.",
+        title: "Review: OOP Principles in Java",
+        description: "Focus on polymorphism and abstract classes.",
         badge: "High Yield" as const,
         timeEstimate: "45m",
         features: ["Logic Drill included"],
@@ -23,16 +23,16 @@ const initialTasks = [
     },
     {
         id: "2",
-        title: "Practice: Integration by Parts",
-        description: "Complete set B of the advanced problem bank.",
+        title: "Practice: Multithreading in Java",
+        description: "Complete set B of the advanced concurrency bank.",
         timeEstimate: "30m",
         completed: false,
         priority: "normal" as const,
     },
     {
         id: "3",
-        title: "Flashcards: Vector Spaces Vocabulary",
-        description: "Review key definitions and theorems.",
+        title: "Flashcards: C++ STL Containers",
+        description: "Review key vectors, maps, and sets.",
         timeEstimate: "15m",
         completed: false,
         priority: "normal" as const,
@@ -40,9 +40,9 @@ const initialTasks = [
 ];
 
 const attentionTopics = [
-    { name: "Vector Spaces", logicScore: 45, severity: "critical" as const },
-    { name: "Linear Mapping", logicScore: 58, severity: "warning" as const },
-    { name: "Eigenvalues", logicScore: 62, severity: "caution" as const },
+    { name: "Java Memory Model", logicScore: 45, severity: "critical" as const },
+    { name: "C++ Smart Pointers", logicScore: 58, severity: "warning" as const },
+    { name: "Move Semantics", logicScore: 62, severity: "caution" as const },
 ];
 
 export default function PlannerPage() {
@@ -98,7 +98,7 @@ export default function PlannerPage() {
                             </div>
 
                             <ExamCountdown
-                                examName="Advanced Calculus"
+                                examName="Java & C++ Mastery"
                                 daysRemaining={12}
                                 hoursRemaining={4}
                                 readinessScore={72}

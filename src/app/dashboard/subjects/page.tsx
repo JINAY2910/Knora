@@ -16,87 +16,66 @@ export default function SubjectsPage() {
                 <div className="grid grid-cols-12 gap-10">
                     {/* Subject Cards Grid */}
                     <div className="col-span-12 xl:col-span-8 grid grid-cols-1 md:grid-cols-2 gap-8 auto-rows-min">
-                        {/* Computer Networks - Expanded */}
+                        {/* Java Programming */}
                         <SubjectCard
-                            title="Computer Networks"
-                            modules={4}
-                            topics={28}
-                            progress={45}
+                            title="Java Programming"
+                            modules={10}
+                            topics={56}
+                            progress={65}
                             status="active"
-                            icon="router"
+                            icon="coffee"
+                            href="/concept/java-intro"
                             priorityTopics={[
                                 {
-                                    title: "OSI Model Layering",
+                                    title: "JVM Architecture",
                                     type: "read",
                                     duration: "15 MIN READ",
-                                    pyqCount: 5,
-                                    difficulty: "EASY",
+                                    difficulty: "HIGH",
                                 },
                                 {
-                                    title: "TCP vs UDP",
-                                    type: "video",
-                                    duration: "VIDEO • 8 MIN",
+                                    title: "Class Fundamentals",
+                                    type: "read",
+                                    duration: "18 MIN READ",
                                     difficulty: "MEDIUM",
                                 },
                                 {
-                                    title: "Subnetting Basics",
-                                    type: "practice",
-                                    duration: "PRACTICE SET",
-                                    difficulty: "EASY",
-                                    locked: true,
+                                    title: "String Immutability",
+                                    type: "read",
+                                    duration: "14 MIN READ",
+                                    difficulty: "MEDIUM",
                                 },
                             ]}
                         />
 
-                        {/* Database Management */}
+                        {/* C++ Programming */}
                         <SubjectCard
-                            title="Database Management"
+                            title="C++ Programming"
                             modules={6}
-                            topics={42}
-                            progress={12}
+                            topics={45}
+                            progress={25}
                             status="active"
-                            icon="database"
+                            icon="terminal"
                             priorityTopics={[
                                 {
-                                    title: "Normalization Forms",
-                                    type: "video",
-                                    duration: "12 MIN",
-                                    difficulty: "HARD",
-                                },
-                                {
-                                    title: "SQL Indexing",
+                                    title: "Pointers & Memory",
                                     type: "read",
-                                    duration: "8 MIN READ",
+                                    duration: "18 MIN READ",
                                     difficulty: "HARD",
                                 },
                                 {
-                                    title: "Transaction ACID Properties",
+                                    title: "STL Containers",
                                     type: "video",
-                                    duration: "15 MIN",
+                                    duration: "25 MIN",
                                     difficulty: "MEDIUM",
+                                },
+                                {
+                                    title: "Move Semantics",
+                                    type: "practice",
+                                    duration: "PRACTICE SET",
+                                    difficulty: "HARD",
                                     locked: true,
                                 }
                             ]}
-                        />
-
-                        {/* Operating Systems */}
-                        <SubjectCard
-                            title="Operating Systems"
-                            modules={5}
-                            topics={35}
-                            progress={100}
-                            status="complete"
-                            icon="psychology"
-                        />
-
-                        {/* Software Engineering */}
-                        <SubjectCard
-                            title="Software Engineering"
-                            modules={3}
-                            topics={18}
-                            progress={0}
-                            status="locked"
-                            icon="code"
                         />
                     </div>
 
