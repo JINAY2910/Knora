@@ -28,7 +28,7 @@ public class Main {
                 subject="Java Programming"
                 topic="Module 8"
                 conceptTitle="Multithreaded Programming"
-                userInitials="JD"
+                userInitials="JS"
                 examMode={true}
             />
 

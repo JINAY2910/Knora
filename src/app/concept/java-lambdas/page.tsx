@@ -30,7 +30,7 @@ public class LambdaTest {
                 subject="Java Programming"
                 topic="Module 6"
                 conceptTitle="Functional Interfaces"
-                userInitials="JD"
+                userInitials="JS"
                 examMode={true}
             />
 

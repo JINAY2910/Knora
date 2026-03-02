@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 import FormattingToolbar from "./FormattingToolbar";
 
 interface AnswerPanelProps {
@@ -11,7 +11,6 @@ interface AnswerPanelProps {
     onPrevious: () => void;
     onNext: () => void;
     onMarkForReview: () => void;
-    onAskHint: () => void;
     isMarkedForReview: boolean;
 }
 
@@ -23,13 +22,46 @@ export default function AnswerPanel({
     onPrevious,
     onNext,
     onMarkForReview,
-    onAskHint,
     isMarkedForReview,
 }: AnswerPanelProps) {
-    const handleFormat = (type: "bold" | "italic" | "list") => {
-        // Simple formatting implementation (could be enhanced)
-        console.log(`Format: ${type}`);
+    const textareaRef = useRef<HTMLDivElement>(null);
+    const [activeFormats, setActiveFormats] = useState({
+        bold: false,
+        italic: false,
+        list: false,
+    });
+
+    const updateFormatState = () => {
+        setActiveFormats({
+            bold: document.queryCommandState("bold"),
+            italic: document.queryCommandState("italic"),
+            list: document.queryCommandState("insertUnorderedList"),
+        });
     };
+
+    const handleFormat = (type: "bold" | "italic" | "list") => {
+        if (type === "bold") {
+            document.execCommand("bold", false, undefined);
+        } else if (type === "italic") {
+            document.execCommand("italic", false, undefined);
+        } else if (type === "list") {
+            document.execCommand("insertUnorderedList", false, undefined);
+        }
+
+        if (textareaRef.current) {
+            onAnswerChange(textareaRef.current.innerHTML);
+            textareaRef.current.focus();
+        }
+        updateFormatState();
+    };
+
+    // Update innerHTML when currentAnswer changes (e.g. navigating questions)
+    // but avoid updating if the change came from the user typing.
+    useEffect(() => {
+        if (textareaRef.current && textareaRef.current.innerHTML !== currentAnswer) {
+            textareaRef.current.innerHTML = currentAnswer;
+        }
+    }, [currentAnswer]);
 
     return (
         <section className="w-1/2 flex flex-col bg-editorial-cream relative z-10 shadow-xl border-l border-editorial-charcoal/10">
@@ -39,8 +71,8 @@ export default function AnswerPanel({
                     <button
                         onClick={() => onAnswerTypeChange("write")}
                         className={`px-3 py-1.5 text-xs font-bold transition-all uppercase tracking-wide ${answerType === "write"
-                                ? "bg-white text-editorial-charcoal shadow-sm border border-editorial-charcoal/10"
-                                : "text-editorial-charcoal/50 hover:text-editorial-charcoal"
+                            ? "bg-white text-editorial-charcoal shadow-sm border border-editorial-charcoal/10"
+                            : "text-editorial-charcoal/50 hover:text-editorial-charcoal"
                             }`}
                     >
                         Write Answer
@@ -48,47 +80,40 @@ export default function AnswerPanel({
                     <button
                         onClick={() => onAnswerTypeChange("multiple")}
                         className={`px-3 py-1.5 text-xs font-bold transition-all uppercase tracking-wide ${answerType === "multiple"
-                                ? "bg-white text-editorial-charcoal shadow-sm border border-editorial-charcoal/10"
-                                : "text-editorial-charcoal/50 hover:text-editorial-charcoal"
+                            ? "bg-white text-editorial-charcoal shadow-sm border border-editorial-charcoal/10"
+                            : "text-editorial-charcoal/50 hover:text-editorial-charcoal"
                             }`}
                     >
                         Multiple Choice
                     </button>
                 </div>
-                <FormattingToolbar onFormat={handleFormat} />
+                <FormattingToolbar onFormat={handleFormat} activeFormats={activeFormats} />
             </div>
-
-            {/* AI Hint Button */}
-            <button
-                onClick={onAskHint}
-                className="absolute top-20 right-6 z-20 flex items-center gap-2 pl-3 pr-4 py-2 bg-editorial-charcoal text-white shadow-lg hover:shadow-xl hover:bg-black transition-all group border border-editorial-charcoal"
-            >
-                <span className="material-symbols-outlined text-primary text-sm">auto_awesome</span>
-                <span className="text-xs font-bold tracking-wide group-hover:pr-1 transition-all uppercase">
-                    Ask AI Hint
-                </span>
-            </button>
 
             {/* Answer Input Area */}
             <div className="flex-1 overflow-y-auto p-8 relative bg-editorial-cream">
                 <div className="h-full flex flex-col">
                     <label className="sr-only">Your Answer</label>
-                    <textarea
-                        value={currentAnswer}
-                        onChange={(e) => onAnswerChange(e.target.value)}
-                        className="w-full h-full bg-transparent border-0 focus:ring-0 p-0 text-editorial-charcoal text-lg leading-relaxed resize-none placeholder-editorial-charcoal/40 font-mono"
-                        placeholder="Type your analysis here. Start by identifying the core premise..."
+                    <div
+                        ref={textareaRef}
+                        contentEditable
+                        onInput={(e) => onAnswerChange(e.currentTarget.innerHTML)}
+                        onKeyUp={updateFormatState}
+                        onMouseUp={updateFormatState}
+                        className="w-full h-full bg-transparent border-0 focus:ring-0 p-0 text-editorial-charcoal text-[17px] leading-relaxed outline-none overflow-y-auto [&_ul]:list-disc [&_ul]:pl-6 [&_ul]:my-2 [&_li]:mb-1 [&_ol]:list-decimal [&_ol]:pl-6 [&_ol]:my-2"
+                        style={{ minHeight: "200px" }}
+                        data-placeholder="Type your analysis here. Start by identifying the core premise..."
                     />
                 </div>
             </div>
 
             {/* Bottom Navigation */}
-            <div className="flex-none p-6 border-t border-editorial-charcoal/10 bg-editorial-cream flex items-center justify-between">
+            <div className="flex-none h-[88px] px-6 border-t-2 border-gray-200 bg-white flex items-center justify-between shadow-[0_-4px_6px_-1px_rgba(0,0,0,0.05)]">
                 <button
                     onClick={onPrevious}
-                    className="flex items-center gap-2 text-editorial-charcoal/60 hover:text-editorial-charcoal transition-colors text-sm font-bold group uppercase tracking-wide"
+                    className="flex items-center gap-2 px-6 py-2.5 bg-white border-2 border-charcoal text-charcoal font-bold text-xs hover:bg-cream transition-all shadow-[2px_2px_0px_0px_rgba(55,56,51,1)] hover:translate-y-[2px] hover:translate-x-[2px] hover:shadow-none uppercase tracking-widest"
                 >
-                    <span className="material-symbols-outlined text-lg group-hover:-translate-x-1 transition-transform">
+                    <span className="material-symbols-outlined text-lg">
                         arrow_back
                     </span>
                     Previous
@@ -96,17 +121,17 @@ export default function AnswerPanel({
                 <div className="flex items-center gap-4">
                     <button
                         onClick={onMarkForReview}
-                        className={`flex items-center gap-2 px-4 py-2 border transition-colors uppercase tracking-wide text-sm font-bold ${isMarkedForReview
-                                ? "bg-primary/10 border-primary text-primary"
-                                : "border-editorial-charcoal/20 hover:bg-white hover:border-editorial-charcoal text-editorial-charcoal"
+                        className={`flex items-center gap-2 px-4 py-2 border-2 transition-all uppercase tracking-widest text-xs font-bold shadow-[2px_2px_0px_0px_rgba(55,56,51,1)] hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-none ${isMarkedForReview
+                            ? "bg-red-50 border-crimson text-crimson"
+                            : "bg-white border-charcoal text-charcoal hover:bg-cream"
                             }`}
                     >
-                        <span className="material-symbols-outlined text-lg text-primary">flag</span>
+                        <span className="material-symbols-outlined text-lg">{isMarkedForReview ? 'bookmark_added' : 'bookmark_add'}</span>
                         {isMarkedForReview ? "Marked" : "Mark for Review"}
                     </button>
                     <button
                         onClick={onNext}
-                        className="flex items-center gap-2 px-6 py-2.5 bg-primary text-white font-bold text-sm hover:bg-primary-dark transition-colors shadow-[4px_4px_0px_0px_rgba(55,56,51,1)] hover:shadow-[2px_2px_0px_0px_rgba(55,56,51,1)] hover:translate-x-[2px] hover:translate-y-[2px] border border-editorial-charcoal uppercase tracking-widest"
+                        className="flex items-center gap-2 px-6 py-2.5 bg-crimson text-white font-bold text-xs hover:bg-red-700 transition-all shadow-[2px_2px_0px_0px_rgba(55,56,51,1)] hover:translate-y-[2px] hover:translate-x-[2px] hover:shadow-none border-2 border-charcoal uppercase tracking-widest"
                     >
                         Next Question
                         <span className="material-symbols-outlined text-lg">arrow_forward</span>

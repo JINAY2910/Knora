@@ -11,7 +11,7 @@ export default function JavaCollectionsPage() {
                 subject="Java Programming"
                 topic="Module 10"
                 conceptTitle="Collections Framework"
-                userInitials="JD"
+                userInitials="JS"
                 examMode={true}
             />
 

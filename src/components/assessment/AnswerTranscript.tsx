@@ -24,7 +24,7 @@ interface AnswerTranscriptProps {
 
 export default function AnswerTranscript({ questions }: AnswerTranscriptProps) {
     const [filter, setFilter] = useState<"all" | "errors">("all");
-    const [expandedQuestion, setExpandedQuestion] = useState<number | null>(questions[0]?.id || null);
+    const [expandedQuestions, setExpandedQuestions] = useState<number[]>([questions[0]?.id]);
 
     const filteredQuestions = questions.filter((q) => {
         if (filter === "errors") {
@@ -34,7 +34,19 @@ export default function AnswerTranscript({ questions }: AnswerTranscriptProps) {
     });
 
     const toggleQuestion = (id: number) => {
-        setExpandedQuestion(expandedQuestion === id ? null : id);
+        setExpandedQuestions(prev =>
+            prev.includes(id) ? prev.filter(qId => qId !== id) : [...prev, id]
+        );
+    };
+
+    const handleShowAll = () => {
+        setFilter("all");
+        setExpandedQuestions(questions.map((q) => q.id));
+    };
+
+    const handleErrorsOnly = () => {
+        setFilter("errors");
+        setExpandedQuestions(questions.filter((q) => q.status !== "Perfect Score").map((q) => q.id));
     };
 
     return (
@@ -43,7 +55,7 @@ export default function AnswerTranscript({ questions }: AnswerTranscriptProps) {
                 <h2 className="text-3xl font-serif font-bold text-charcoal">Answer Transcript</h2>
                 <div className="flex gap-4">
                     <button
-                        onClick={() => setFilter("all")}
+                        onClick={handleShowAll}
                         className={`px-4 py-2 text-xs font-bold uppercase tracking-widest transition ${filter === "all"
                             ? "text-charcoal border-2 border-charcoal bg-white"
                             : "text-charcoal border border-charcoal hover:bg-charcoal hover:text-cream"
@@ -52,7 +64,7 @@ export default function AnswerTranscript({ questions }: AnswerTranscriptProps) {
                         Show All
                     </button>
                     <button
-                        onClick={() => setFilter("errors")}
+                        onClick={handleErrorsOnly}
                         className={`px-4 py-2 text-xs font-bold uppercase tracking-widest transition ${filter === "errors"
                             ? "text-white bg-crimson border-2 border-crimson"
                             : "text-crimson bg-crimson/5 border border-crimson hover:bg-crimson hover:text-white"
@@ -65,7 +77,7 @@ export default function AnswerTranscript({ questions }: AnswerTranscriptProps) {
 
             <div className="space-y-8">
                 {filteredQuestions.map((question) => {
-                    const isExpanded = expandedQuestion === question.id;
+                    const isExpanded = expandedQuestions.includes(question.id);
                     const isPerfect = question.status === "Perfect Score";
 
                     return (

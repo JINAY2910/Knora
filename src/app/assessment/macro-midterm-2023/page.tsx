@@ -125,7 +125,7 @@ export default function AssessmentPage() {
 
     return (
         <div className="bg-cream text-charcoal font-sans min-h-screen flex flex-col selection:bg-crimson selection:text-white">
-            <AssessmentNav userInitials="JD" onNotificationClick={handleNotification} />
+            <AssessmentNav userInitials="JS" onNotificationClick={handleNotification} />
 
             <main className="flex-grow container mx-auto px-4 sm:px-6 lg:px-8 py-12 relative">
                 {/* Pattern Grid Background */}

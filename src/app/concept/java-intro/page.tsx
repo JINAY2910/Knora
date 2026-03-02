@@ -20,7 +20,7 @@ export default function JavaIntroPage() {
                 subject="Java Programming"
                 topic="Module 1 & 2"
                 conceptTitle="Introduction to Java"
-                userInitials="JD"
+                userInitials="JS"
                 examMode={true}
             />
 

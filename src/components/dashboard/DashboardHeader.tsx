@@ -1,12 +1,35 @@
-export default function DashboardHeader() {
+import Link from "next/link";
+
+interface DashboardHeaderProps {
+    title?: string;
+    subtitle?: string;
+    backHref?: string;
+    backText?: string;
+}
+
+export default function DashboardHeader({
+    title = "My Subjects",
+    subtitle = "Computer Science • Semester 4",
+    backHref,
+    backText = "Back"
+}: DashboardHeaderProps) {
     return (
         <header className="h-20 flex items-center justify-between px-8 bg-cream editorial-border-b z-10 sticky top-0">
-            <div className="flex flex-col gap-0.5">
-                <h1 className="text-xl font-bold text-charcoal">My Subjects</h1>
-                <p className="text-[10px] font-semibold text-charcoal/50 uppercase tracking-wider">
-                    Computer Science • Semester 4
-                </p>
-            </div>
+            {backHref ? (
+                <div className="flex items-center h-full">
+                    <Link href={backHref} className="flex items-center gap-2 text-[12px] font-bold text-charcoal/60 hover:text-crimson uppercase tracking-widest transition-colors py-2 px-3 -ml-3 rounded-md hover:bg-black/5">
+                        <span className="material-symbols-outlined text-[18px]">arrow_back</span>
+                        {backText}
+                    </Link>
+                </div>
+            ) : (
+                <div className="flex flex-col gap-0.5 justify-center h-full">
+                    <h1 className="text-xl font-bold text-charcoal">{title}</h1>
+                    <p className="text-[10px] font-semibold text-charcoal/50 uppercase tracking-wider">
+                        {subtitle}
+                    </p>
+                </div>
+            )}
 
             <div className="flex items-center gap-4">
                 {/* Search Bar */}

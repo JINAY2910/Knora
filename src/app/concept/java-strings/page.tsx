@@ -29,7 +29,7 @@ export default function JavaStringsPage() {
                 subject="Java Programming"
                 topic="Module 4"
                 conceptTitle="String Handling"
-                userInitials="JD"
+                userInitials="JS"
                 examMode={true}
             />
 

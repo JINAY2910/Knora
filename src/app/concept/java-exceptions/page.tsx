@@ -31,7 +31,7 @@ export default function JavaExceptionsPage() {
                 subject="Java Programming"
                 topic="Module 7"
                 conceptTitle="Exception Handling"
-                userInitials="JD"
+                userInitials="JS"
                 examMode={true}
             />
 

@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, use } from "react";
 import PracticeHeader from "@/components/practice/PracticeHeader";
 import QuestionNavigator from "@/components/practice/QuestionNavigator";
 import QuestionPanel from "@/components/practice/QuestionPanel";
@@ -31,14 +31,43 @@ const allQuestions = Array.from({ length: 50 }, (_, i) => ({
     id: i + 1,
 }));
 
-export default function PracticePage() {
-    const [currentQuestion, setCurrentQuestion] = useState(12);
+export default function PracticePage({ params }: { params: Promise<{ subjectId: string, testId: string }> }) {
+    const { subjectId, testId } = use(params);
+
+    const [currentQuestion, setCurrentQuestion] = useState(1);
     const [answers, setAnswers] = useState<Record<number, string>>({});
     const [markedForReview, setMarkedForReview] = useState<number[]>([]);
     const [answerType, setAnswerType] = useState<"write" | "multiple">("write");
-    const [timeRemaining, setTimeRemaining] = useState("45:00");
 
-    const question = allQuestions[currentQuestion - 1];
+    // Dynamic Header Info based on URL
+    const subjectName = subjectId === "cpp-programming" ? "C++ Programming" : "Java Programming";
+    let testName = "Practice Test";
+    let testDifficulty: "Easy" | "Medium" | "Hard" | "Exam Level" = "Medium";
+    let timeLimit = "45:00";
+    let questionCount = 25;
+
+    if (testId === "half-1") {
+        testName = "1st Half Modules";
+        testDifficulty = "Medium";
+    } else if (testId === "half-2") {
+        testName = "2nd Half Modules";
+        testDifficulty = "Hard";
+    } else if (testId === "full") {
+        testName = "Full Syllabus Exam";
+        testDifficulty = "Exam Level";
+        timeLimit = "180:00";
+        questionCount = 50;
+    }
+
+    const [timeRemaining, setTimeRemaining] = useState(timeLimit);
+
+    // Generate accurate number of questions based on test type
+    const testQuestions = Array.from({ length: questionCount }, (_, i) => ({
+        ...mockQuestions[0],
+        id: i + 1,
+    }));
+
+    const question = testQuestions[currentQuestion - 1];
     const currentAnswer = answers[currentQuestion] || "";
     const answeredQuestions = Object.keys(answers).map(Number);
     const isMarkedForReview = markedForReview.includes(currentQuestion);
@@ -61,7 +90,7 @@ export default function PracticePage() {
     };
 
     const handleNext = () => {
-        if (currentQuestion < allQuestions.length) {
+        if (currentQuestion < testQuestions.length) {
             setCurrentQuestion(currentQuestion + 1);
         }
     };
@@ -80,23 +109,19 @@ export default function PracticePage() {
         }
     };
 
-    const handleSettings = () => {
-        alert("Settings clicked");
-    };
-
     const handleAskHint = () => {
         alert("AI Hint requested");
     };
 
     return (
-        <div className="bg-editorial-bg-question text-editorial-charcoal font-display h-screen flex flex-col overflow-hidden">
+        <div className="bg-cream text-charcoal font-sans h-screen flex flex-col overflow-hidden">
             <PracticeHeader
-                subject="Java Programming"
-                section="Section 3: Concurrency"
+                subject={subjectName}
+                section={testName}
                 timeRemaining={timeRemaining}
-                difficulty="Hard"
+                difficulty={testDifficulty}
                 onSubmit={handleSubmit}
-                onSettings={handleSettings}
+                onAskHint={handleAskHint}
             />
 
             <main className="flex-1 flex overflow-hidden">
@@ -119,11 +144,11 @@ export default function PracticePage() {
                     />
 
                     {/* Tags at bottom */}
-                    <div className="flex-none p-4 border-t border-editorial-charcoal/10 flex gap-2 bg-[#f4f5f2]">
+                    <div className="flex-none h-[88px] px-6 border-t-2 border-gray-200 bg-[#f4f5f2] flex items-center gap-2">
                         {question.tags.map((tag) => (
                             <span
                                 key={tag}
-                                className="px-2 py-1 bg-white border border-editorial-charcoal/20 text-xs font-bold text-editorial-charcoal/70 uppercase tracking-wide"
+                                className="px-3 py-1.5 bg-white border border-charcoal/20 text-xs font-bold text-charcoal/70 uppercase tracking-widest shadow-sm"
                             >
                                 {tag}
                             </span>
@@ -131,7 +156,6 @@ export default function PracticePage() {
                     </div>
                 </section>
 
-                {/* Answer Panel */}
                 <AnswerPanel
                     answerType={answerType}
                     currentAnswer={currentAnswer}
@@ -140,7 +164,6 @@ export default function PracticePage() {
                     onPrevious={handlePrevious}
                     onNext={handleNext}
                     onMarkForReview={handleMarkForReview}
-                    onAskHint={handleAskHint}
                     isMarkedForReview={isMarkedForReview}
                 />
             </main>

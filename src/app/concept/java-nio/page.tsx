@@ -11,7 +11,7 @@ export default function JavaNioPage() {
                 subject="Java Programming"
                 topic="Module 9"
                 conceptTitle="File NIO"
-                userInitials="JD"
+                userInitials="JS"
                 examMode={true}
             />
 

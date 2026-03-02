@@ -22,13 +22,9 @@ export default function QuestionPanel({
     return (
         <div className="flex-1 overflow-y-auto p-8 lg:p-12">
             <div className="max-w-3xl mx-auto">
-                <div className="flex items-center gap-3 mb-6">
-                    <span className="bg-primary text-white px-2 py-0.5 text-xs font-bold uppercase tracking-widest">
+                <div className="flex items-center gap-4 mb-6">
+                    <span className="bg-crimson text-white px-3 py-1.5 text-sm font-bold uppercase tracking-widest shadow-sm">
                         Question {questionNumber}
-                    </span>
-                    <div className="w-1 h-1 bg-editorial-charcoal rounded-full"></div>
-                    <span className="text-editorial-charcoal/70 text-xs font-bold uppercase tracking-wide">
-                        {topic}
                     </span>
                 </div>
 

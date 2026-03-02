@@ -1,10 +1,12 @@
+import Link from "next/link";
+
 interface PracticeHeaderProps {
     subject: string;
     section: string;
     timeRemaining: string;
-    difficulty: "Easy" | "Medium" | "Hard";
+    difficulty: "Easy" | "Medium" | "Hard" | "Exam Level";
     onSubmit: () => void;
-    onSettings: () => void;
+    onAskHint: () => void;
 }
 
 export default function PracticeHeader({
@@ -13,57 +15,65 @@ export default function PracticeHeader({
     timeRemaining,
     difficulty,
     onSubmit,
-    onSettings,
+    onAskHint,
 }: PracticeHeaderProps) {
     const difficultyColors = {
         Easy: "bg-green-600",
         Medium: "bg-yellow-600",
         Hard: "bg-primary",
+        "Exam Level": "bg-charcoal",
     };
 
     return (
-        <header className="h-16 flex-none border-b-2 border-editorial-charcoal bg-white px-6 flex items-center justify-between z-20 shadow-sm relative">
+        <header className="h-20 flex-none border-b-2 border-charcoal bg-cream px-8 flex items-center justify-between z-20 shadow-sm relative">
             <div className="flex items-center gap-6">
-                <div className="flex items-center gap-2">
-                    <img src="/logo.png" alt="KNORA" className="w-8 h-8" />
-                    <span className="font-bold text-lg tracking-tight hidden md:block text-editorial-charcoal">
+                <Link href="/dashboard/subjects" className="flex items-center gap-2 hover:opacity-80 transition-opacity" title="Back to Dashboard">
+                    <img src="/logo.png" alt="KNORA" className="w-9 h-9" />
+                    <span className="font-bold text-xl tracking-tight hidden md:block text-charcoal">
                         KNORA
                     </span>
-                </div>
-                <div className="h-6 w-px bg-editorial-charcoal/20 hidden md:block"></div>
-                <nav className="hidden md:flex items-center text-sm font-medium text-editorial-charcoal/60">
-                    <span className="hover:text-primary transition-colors cursor-pointer uppercase tracking-wide text-xs font-bold">
+                </Link>
+                <div className="h-6 w-px bg-charcoal/20 hidden md:block"></div>
+                <nav className="hidden md:flex items-center text-sm font-medium text-charcoal/60">
+                    <span className="hover:text-crimson transition-colors cursor-pointer uppercase tracking-widest text-xs font-bold">
                         {subject}
                     </span>
-                    <span className="material-symbols-outlined text-base mx-1 text-editorial-charcoal">
+                    <span className="material-symbols-outlined text-base mx-2 text-charcoal/40">
                         chevron_right
                     </span>
-                    <span className="text-editorial-charcoal font-bold">{section}</span>
+                    <span className="text-charcoal font-bold tracking-wide uppercase text-xs">{section}</span>
                 </nav>
             </div>
-            <div className="flex items-center gap-4">
-                <div className="flex items-center gap-2 bg-editorial-cream border border-editorial-charcoal px-4 py-1.5 shadow-[2px_2px_0px_0px_rgba(55,56,51,1)] mr-2">
-                    <span className="material-symbols-outlined text-primary text-xl">timer</span>
-                    <span className="font-mono font-bold text-lg text-editorial-charcoal">{timeRemaining}</span>
+            <div className="flex items-center gap-5">
+                <div className="flex items-center gap-2 bg-white border border-charcoal px-4 py-2 shadow-[2px_2px_0px_0px_rgba(55,56,51,1)]">
+                    <span className="material-symbols-outlined text-crimson text-xl">timer</span>
+                    <span className="font-mono font-bold text-lg text-charcoal tracking-wider">{timeRemaining}</span>
                 </div>
                 <div
-                    className={`hidden sm:flex items-center px-3 py-1 ${difficultyColors[difficulty]} text-white border border-editorial-charcoal text-xs font-bold uppercase tracking-wider shadow-[2px_2px_0px_0px_rgba(55,56,51,1)]`}
+                    className={`hidden lg:flex items-center px-4 py-2 ${difficultyColors[difficulty]} text-white border border-charcoal text-xs font-bold uppercase tracking-widest shadow-[2px_2px_0px_0px_rgba(55,56,51,1)]`}
                 >
                     {difficulty}
                 </div>
+
                 <button
-                    onClick={onSettings}
-                    className="p-2 hover:bg-editorial-charcoal hover:text-white text-editorial-charcoal transition-colors border border-transparent hover:border-editorial-charcoal"
-                    title="Settings"
+                    onClick={onAskHint}
+                    className="flex items-center gap-2 px-4 py-2 bg-charcoal text-white hover:bg-black transition-all border border-charcoal font-bold text-xs uppercase tracking-widest shadow-[2px_2px_0px_0px_rgba(55,56,51,1)] hover:translate-y-[2px] hover:translate-x-[2px] hover:shadow-none"
+                    title="Ask AI Hint"
                 >
-                    <span className="material-symbols-outlined">settings</span>
+                    <span className="material-symbols-outlined text-cream text-[18px]">auto_awesome</span>
+                    <span className="hidden sm:inline">Ask AI Hint</span>
                 </button>
+
                 <button
                     onClick={onSubmit}
-                    className="bg-editorial-charcoal hover:bg-black text-white px-5 py-2 font-bold text-sm transition-all border border-editorial-charcoal hover:shadow-lg"
+                    className="hidden md:block bg-crimson hover:bg-red-700 text-white px-6 py-2 font-bold text-xs uppercase tracking-widest transition-all border border-charcoal shadow-[2px_2px_0px_0px_rgba(55,56,51,1)] hover:translate-y-[2px] hover:translate-x-[2px] hover:shadow-none"
                 >
                     Submit Test
                 </button>
+
+                <div className="h-10 w-10 border border-charcoal bg-crimson flex items-center justify-center text-white font-sans font-bold text-lg shadow-[2px_2px_0px_0px_rgba(55,56,51,1)] ml-2" title="Settings / Profile">
+                    JS
+                </div>
             </div>
         </header>
     );

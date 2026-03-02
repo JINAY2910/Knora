@@ -35,7 +35,7 @@ export default function JavaClassesPage() {
                 subject="Java Programming"
                 topic="Module 3"
                 conceptTitle="Class Fundamentals"
-                userInitials="JD"
+                userInitials="JS"
                 examMode={true}
             />
 

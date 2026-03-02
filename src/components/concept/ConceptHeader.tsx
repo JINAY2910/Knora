@@ -1,3 +1,8 @@
+"use client";
+
+import { useState } from "react";
+import Link from "next/link";
+
 interface ConceptHeaderProps {
     subject: string;
     topic: string;
@@ -13,18 +18,28 @@ export default function ConceptHeader({
     userInitials,
     examMode = false,
 }: ConceptHeaderProps) {
+    const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
     return (
-        <header className="h-20 border-b-2 border-charcoal bg-cream z-20 flex items-center justify-between px-8 shrink-0">
+        <header className="h-20 border-b-2 border-charcoal bg-cream z-20 flex items-center justify-between px-8 shrink-0 relative">
             <div className="flex items-center gap-6">
-                <button className="p-2 text-charcoal hover:text-crimson transition-colors">
-                    <span className="material-symbols-outlined text-[24px]">menu</span>
+                <button
+                    onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+                    className="p-2 text-charcoal hover:text-crimson transition-colors md:hidden"
+                >
+                    <span className="material-symbols-outlined text-[24px]">
+                        {isMobileMenuOpen ? "close" : "menu"}
+                    </span>
                 </button>
                 <div className="flex items-center gap-3 text-sm tracking-wide">
-                    <span className="text-charcoal-light uppercase font-bold text-xs tracking-widest">{subject}</span>
-                    <span className="text-charcoal-light font-sans text-xs">/</span>
-                    <span className="text-charcoal-light uppercase font-bold text-xs tracking-widest">{topic}</span>
-                    <span className="text-charcoal-light font-sans text-xs">/</span>
-                    <span className="font-bold text-charcoal font-sans text-lg">{conceptTitle}</span>
+                    <Link href="/dashboard/subjects" className="text-charcoal-light hover:text-crimson transition-colors uppercase font-bold text-xs tracking-widest hidden sm:inline">
+                        {subject}
+                    </Link>
+                    <span className="text-charcoal-light font-sans text-xs hidden sm:inline">/</span>
+                    <span className="text-charcoal-light uppercase font-bold text-xs tracking-widest hidden sm:inline">
+                        {topic}
+                    </span>
+                    <span className="text-charcoal-light font-sans text-xs hidden sm:inline">/</span>
+                    <span className="font-bold text-charcoal font-sans text-lg truncate max-w-[200px] sm:max-w-none">{conceptTitle}</span>
                 </div>
             </div>
             <div className="flex items-center gap-6">
@@ -38,6 +53,28 @@ export default function ConceptHeader({
                     {userInitials}
                 </div>
             </div>
+
+            {/* Mobile Menu Overlay */}
+            {isMobileMenuOpen && (
+                <div className="absolute top-20 left-0 w-full bg-cream border-b-2 border-charcoal shadow-lg md:hidden z-50 animate-in slide-in-from-top-2 duration-200">
+                    <nav className="flex flex-col p-4">
+                        <Link
+                            href="/dashboard/subjects"
+                            className="px-4 py-3 text-charcoal border-b border-charcoal/10 font-bold uppercase tracking-widest text-sm hover:text-crimson transition-colors flex items-center gap-3"
+                        >
+                            <span className="material-symbols-outlined">grid_view</span>
+                            Dashboard
+                        </Link>
+                        <Link
+                            href="/planner"
+                            className="px-4 py-3 text-charcoal border-b border-charcoal/10 font-bold uppercase tracking-widest text-sm hover:text-crimson transition-colors flex items-center gap-3"
+                        >
+                            <span className="material-symbols-outlined">calendar_today</span>
+                            Revision Planner
+                        </Link>
+                    </nav>
+                </div>
+            )}
         </header>
     );
 }

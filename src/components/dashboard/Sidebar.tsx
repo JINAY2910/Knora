@@ -6,7 +6,7 @@ import { usePathname } from "next/navigation";
 
 const NAV_ITEMS = [
     { name: "Dashboard", href: "/dashboard/subjects", icon: "grid_view" },
-    { name: "Practice", href: "/practice/logic-syllogisms-hard", icon: "edit_document" },
+    { name: "Practice", href: "/practice", icon: "edit_document" },
     { name: "Revision Planner", href: "/planner", icon: "calendar_today" },
     { name: "Analytics", href: "/assessment/macro-midterm-2023", icon: "analytics" },
 ];
@@ -32,9 +32,8 @@ export default function Sidebar() {
 
     return (
         <aside
-            onClick={() => setIsCollapsed(!isCollapsed)}
             className={`${isCollapsed ? "w-20" : "w-64"
-                } bg-charcoal text-white flex-shrink-0 hidden lg:flex flex-col h-screen z-20 transition-all duration-300 ease-in-out border-r border-charcoal-light relative cursor-pointer`}
+                } bg-charcoal text-white flex-shrink-0 hidden lg:flex flex-col h-screen z-20 transition-all duration-300 ease-in-out border-r border-charcoal-light relative`}
         >
             {/* Header */}
             <div className={`h-20 flex items-center ${isCollapsed ? "justify-center" : "px-6"} border-b border-charcoal-light transition-all`}>
@@ -104,12 +103,27 @@ export default function Sidebar() {
             </nav>
 
             {/* User Profile */}
-            <div className="p-4 border-t border-charcoal-light">
+            <div className="p-4 border-t border-charcoal-light flex flex-col gap-2">
+                <button
+                    onClick={(e) => {
+                        e.stopPropagation();
+                        setIsCollapsed(!isCollapsed);
+                    }}
+                    className={`flex items-center gap-3 p-2 rounded cursor-pointer hover:bg-white/5 transition-colors text-gray-400 hover:text-white ${isCollapsed ? "justify-center" : ""}`}
+                    title={isCollapsed ? "Expand" : "Collapse"}
+                >
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="flex-shrink-0">
+                        <rect width="18" height="18" x="3" y="3" rx="2" ry="2" />
+                        <line x1={isCollapsed ? 15 : 9} x2={isCollapsed ? 15 : 9} y1="3" y2="21" />
+                        <path d={isCollapsed ? "m11 15 3-3-3-3" : "m15 15-3-3 3-3"} />
+                    </svg>
+                    {!isCollapsed && <span className="text-[15px] font-medium text-[#e2e8f0]">Collapse</span>}
+                </button>
                 <div
                     onClick={(e) => e.stopPropagation()}
                     className={`flex items-center gap-3 p-2 rounded cursor-pointer hover:bg-white/5 transition-colors ${isCollapsed ? "justify-center" : ""}`}
                 >
-                    <div className="w-9 h-9 bg-gray-700 rounded-full flex items-center justify-center text-white font-semibold text-xs flex-shrink-0 border border-gray-600">
+                    <div className="h-9 w-9 border-2 border-charcoal bg-crimson flex items-center justify-center text-white font-sans font-bold text-sm shadow-[2px_2px_0px_0px_rgba(55,56,51,1)] shrink-0">
                         JS
                     </div>
                     {!isCollapsed && (

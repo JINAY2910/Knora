@@ -7,18 +7,25 @@ interface AssessmentFooterProps {
     onNextModule: () => void;
 }
 
+import Link from "next/link";
+
 export default function AssessmentFooter({ onDownload, onShare, onRetake, onNextModule }: AssessmentFooterProps) {
     return (
         <footer className="sticky bottom-0 bg-cream border-t-2 border-charcoal py-5 z-50">
             <div className="container mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row justify-between items-center gap-6">
-                <div className="flex items-center gap-6 text-xs font-bold uppercase tracking-widest text-charcoal">
+                <div className="flex items-center gap-6 text-[11px] font-bold uppercase tracking-widest text-charcoal">
+                    <Link
+                        href="/dashboard/subjects"
+                        className="hover:text-crimson flex items-center gap-2 transition-colors border-r-2 border-charcoal/20 pr-6"
+                    >
+                        <span className="material-symbols-outlined text-base">arrow_back</span> Dashboard
+                    </Link>
                     <button
                         onClick={onDownload}
                         className="hover:text-crimson flex items-center gap-2 transition-colors"
                     >
                         <span className="material-symbols-outlined text-base">download</span> Download PDF
                     </button>
-                    <span className="h-4 w-px bg-charcoal/30"></span>
                     <button onClick={onShare} className="hover:text-crimson flex items-center gap-2 transition-colors">
                         <span className="material-symbols-outlined text-base">share</span> Share Results
                     </button>

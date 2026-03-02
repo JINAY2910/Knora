@@ -36,7 +36,7 @@ int main() {
                 subject="C++ Programming"
                 topic="Memory Management"
                 conceptTitle="Pointers Deep Dive"
-                userInitials="JD"
+                userInitials="JS"
                 examMode={true}
             />
 

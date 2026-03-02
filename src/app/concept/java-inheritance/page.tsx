@@ -37,7 +37,7 @@ class Circle extends Shape implements Drawable {
                 subject="Java Programming"
                 topic="Module 5"
                 conceptTitle="Inheritance & Interfaces"
-                userInitials="JD"
+                userInitials="JS"
                 examMode={true}
             />
 
@@ -75,14 +75,68 @@ class Circle extends Shape implements Drawable {
                         </div>
 
                         {/* Figure */}
-                        <ConceptFigure figureNumber="FIG 5.1" caption="Diamond Problem & Interfaces">
-                            <div className="z-10 text-center transform group-hover:scale-105 transition-transform duration-700 py-12">
-                                <span className="material-symbols-outlined text-8xl text-charcoal group-hover:text-crimson transition-colors duration-500">
-                                    account_tree
-                                </span>
-                                <p className="mt-4 text-base text-charcoal font-bold font-mono tracking-tighter uppercase">
-                                    Class Hierarchies
-                                </p>
+                        <ConceptFigure figureNumber="FIG 5.1" caption="Types of Inheritance in Java">
+                            <div className="z-10 w-full h-full min-h-[400px] flex items-center justify-center relative bg-white p-8 overflow-x-auto">
+                                <svg width="600" height="400" viewBox="0 0 800 500" className="min-w-[600px]">
+                                    <defs>
+                                        <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+                                            <path d="M 0 0 L 10 5 L 0 10 z" fill="#1a1a1a" />
+                                        </marker>
+                                    </defs>
+
+                                    {/* Lines with arrows */}
+                                    {/* Center to Top */}
+                                    <line x1="400" y1="250" x2="400" y2="105" stroke="#1a1a1a" strokeWidth="2" markerEnd="url(#arrow)" />
+                                    {/* Center to Left */}
+                                    <line x1="400" y1="250" x2="205" y2="250" stroke="#1a1a1a" strokeWidth="2" markerEnd="url(#arrow)" />
+                                    {/* Center to Right */}
+                                    <line x1="400" y1="250" x2="595" y2="250" stroke="#1a1a1a" strokeWidth="2" markerEnd="url(#arrow)" />
+                                    {/* Center to Bottom Left */}
+                                    <line x1="400" y1="250" x2="275" y2="395" stroke="#1a1a1a" strokeWidth="2" markerEnd="url(#arrow)" />
+                                    {/* Center to Bottom Right */}
+                                    <line x1="400" y1="250" x2="525" y2="395" stroke="#1a1a1a" strokeWidth="2" markerEnd="url(#arrow)" />
+
+                                    {/* Center Box */}
+                                    <g transform="translate(400, 250)">
+                                        <rect x="-80" y="-30" width="160" height="60" rx="8" fill="#f0f0f0" stroke="#1a1a1a" strokeWidth="1" />
+                                        <text x="0" y="8" fontFamily="sans-serif" fontSize="24" fontWeight="bold" fill="#2e7d32" textAnchor="middle">Inheritance</text>
+                                    </g>
+
+                                    {/* Top Ellipse - Single */}
+                                    <g transform="translate(400, 60)">
+                                        <ellipse rx="100" ry="40" fill="#f8f8f8" stroke="#1a1a1a" strokeWidth="1" />
+                                        <text x="0" y="-5" fontFamily="sans-serif" fontSize="20" fontWeight="bold" fill="#2e7d32" textAnchor="middle">Single</text>
+                                        <text x="0" y="20" fontFamily="sans-serif" fontSize="20" fontWeight="bold" fill="#2e7d32" textAnchor="middle">inheritance</text>
+                                    </g>
+
+                                    {/* Left Ellipse - Hierarchical */}
+                                    <g transform="translate(100, 250)">
+                                        <ellipse rx="100" ry="40" fill="#f8f8f8" stroke="#1a1a1a" strokeWidth="1" />
+                                        <text x="0" y="-5" fontFamily="sans-serif" fontSize="20" fontWeight="bold" fill="#2e7d32" textAnchor="middle">Hierarchical</text>
+                                        <text x="0" y="20" fontFamily="sans-serif" fontSize="20" fontWeight="bold" fill="#2e7d32" textAnchor="middle">inheritance</text>
+                                    </g>
+
+                                    {/* Right Ellipse - Multiple */}
+                                    <g transform="translate(700, 250)">
+                                        <ellipse rx="100" ry="40" fill="#f8f8f8" stroke="#1a1a1a" strokeWidth="1" />
+                                        <text x="0" y="-5" fontFamily="sans-serif" fontSize="20" fontWeight="bold" fill="#2e7d32" textAnchor="middle">Multiple</text>
+                                        <text x="0" y="20" fontFamily="sans-serif" fontSize="20" fontWeight="bold" fill="#2e7d32" textAnchor="middle">inheritance</text>
+                                    </g>
+
+                                    {/* Bottom Left Ellipse - Multilevel */}
+                                    <g transform="translate(240, 440)">
+                                        <ellipse rx="100" ry="40" fill="#f8f8f8" stroke="#1a1a1a" strokeWidth="1" />
+                                        <text x="0" y="-5" fontFamily="sans-serif" fontSize="20" fontWeight="bold" fill="#2e7d32" textAnchor="middle">Multilevel</text>
+                                        <text x="0" y="20" fontFamily="sans-serif" fontSize="20" fontWeight="bold" fill="#2e7d32" textAnchor="middle">inheritance</text>
+                                    </g>
+
+                                    {/* Bottom Right Ellipse - Hybrid */}
+                                    <g transform="translate(560, 440)">
+                                        <ellipse rx="100" ry="40" fill="#f8f8f8" stroke="#1a1a1a" strokeWidth="1" />
+                                        <text x="0" y="-5" fontFamily="sans-serif" fontSize="20" fontWeight="bold" fill="#2e7d32" textAnchor="middle">Hybrid</text>
+                                        <text x="0" y="20" fontFamily="sans-serif" fontSize="20" fontWeight="bold" fill="#2e7d32" textAnchor="middle">inheritance</text>
+                                    </g>
+                                </svg>
                             </div>
                         </ConceptFigure>
 
