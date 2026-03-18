@@ -2,9 +2,11 @@
 
 import { useState } from "react";
 import Link from "next/link";
+import { useSession, signIn, signOut } from "next-auth/react";
 
 export default function Navigation() {
     const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+    const { data: session } = useSession();
 
     return (
         <nav className="fixed top-0 w-full z-50 glass-nav">
@@ -43,17 +45,46 @@ export default function Navigation() {
                     </div>
 
                     {/* CTA Button */}
-                    <div className="hidden md:block">
-                        <Link
-                            href="/dashboard/subjects"
-                            className="btn-primary px-5 py-2.5 text-sm font-semibold transition-all border border-background-dark"
-                        >
-                            Get Started
-                        </Link>
+                    <div className="hidden md:flex items-center gap-4">
+                        {session ? (
+                            <>
+                                <Link href="/dashboard/profile" className="flex items-center gap-2 hover:opacity-80 transition-opacity">
+                                    {session.user?.image ? (
+                                        <img src={session.user.image} alt="Profile" className="w-8 h-8 rounded-full shadow-sm" />
+                                    ) : (
+                                        <span className="material-icons-round text-3xl">account_circle</span>
+                                    )}
+                                    <span className="text-sm font-medium">{session.user?.name}</span>
+                                </Link>
+                                <button
+                                    onClick={() => signOut({ callbackUrl: '/' })}
+                                    className="px-4 py-2 text-sm font-semibold rounded-lg border border-red-500 text-red-500 hover:bg-red-50 transition-all font-sans"
+                                >
+                                    Logout
+                                </button>
+                            </>
+                        ) : (
+                            <button
+                                onClick={() => signIn("google", { callbackUrl: '/dashboard/subjects' })}
+                                className="btn-primary px-5 py-2.5 text-sm font-semibold transition-all border border-background-dark flex items-center gap-2"
+                            >
+                                <span className="material-icons-round text-lg">login</span>
+                                Login
+                            </button>
+                        )}
                     </div>
 
                     {/* Mobile menu button */}
-                    <div className="-mr-2 flex md:hidden">
+                    <div className="-mr-2 flex md:hidden items-center gap-4">
+                        {session && (
+                            <Link href="/dashboard/profile">
+                                {session.user?.image ? (
+                                    <img src={session.user.image} alt="Profile" className="w-8 h-8 rounded-full shadow-sm" />
+                                ) : (
+                                    <span className="material-icons-round text-3xl">account_circle</span>
+                                )}
+                            </Link>
+                        )}
                         <button
                             type="button"
                             className="inline-flex items-center justify-center p-2 rounded text-text-main hover:text-primary focus:outline-none"

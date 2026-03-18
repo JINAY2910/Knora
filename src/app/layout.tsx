@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Inter, Merriweather } from "next/font/google";
 import "./globals.css";
+import NextAuthProvider from "@/components/NextAuthProvider";
 
 const inter = Inter({
     subsets: ["latin"],
@@ -41,7 +42,9 @@ export default function RootLayout({
             <body
                 className={`${inter.variable} ${merriweather.variable} bg-background-light text-text-main font-sans selection:bg-primary selection:text-white overflow-x-hidden`}
             >
-                {children}
+                <NextAuthProvider>
+                    {children}
+                </NextAuthProvider>
             </body>
         </html>
     );
