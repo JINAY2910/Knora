@@ -1,4 +1,5 @@
 import Sidebar from "@/components/dashboard/Sidebar";
+import ActivityTracker from "@/components/dashboard/ActivityTracker";
 
 export default function DashboardLayout({
     children,
@@ -7,6 +8,7 @@ export default function DashboardLayout({
 }) {
     return (
         <div className="flex overflow-hidden h-screen bg-cream">
+            <ActivityTracker />
             <Sidebar />
             {children}
         </div>

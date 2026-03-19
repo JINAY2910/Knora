@@ -1,7 +1,7 @@
 import DashboardHeader from "@/components/dashboard/DashboardHeader";
 import FeaturedCourse from "@/components/dashboard/FeaturedCourse";
 import SubjectCard from "@/components/dashboard/SubjectCard";
-import VelocityWidget from "@/components/dashboard/VelocityWidget";
+import HeatmapWidget from "@/components/dashboard/HeatmapWidget";
 import GoalsWidget from "@/components/dashboard/GoalsWidget";
 import AIInsightWidget from "@/components/dashboard/AIInsightWidget";
 
@@ -81,7 +81,7 @@ export default function SubjectsPage() {
 
                     {/* Sidebar Widgets */}
                     <div className="hidden xl:block col-span-4 space-y-8">
-                        <VelocityWidget />
+                        <HeatmapWidget />
                         <GoalsWidget />
                         <AIInsightWidget />
                     </div>

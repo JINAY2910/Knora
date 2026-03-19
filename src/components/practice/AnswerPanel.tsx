@@ -5,6 +5,7 @@ import FormattingToolbar from "./FormattingToolbar";
 
 interface AnswerPanelProps {
     answerType: "write" | "multiple";
+    options?: string[];
     currentAnswer: string;
     onAnswerChange: (answer: string) => void;
     onAnswerTypeChange: (type: "write" | "multiple") => void;
@@ -16,6 +17,7 @@ interface AnswerPanelProps {
 
 export default function AnswerPanel({
     answerType,
+    options,
     currentAnswer,
     onAnswerChange,
     onAnswerTypeChange,
@@ -94,16 +96,40 @@ export default function AnswerPanel({
             <div className="flex-1 overflow-y-auto p-8 relative bg-editorial-cream">
                 <div className="h-full flex flex-col">
                     <label className="sr-only">Your Answer</label>
-                    <div
-                        ref={textareaRef}
-                        contentEditable
-                        onInput={(e) => onAnswerChange(e.currentTarget.innerHTML)}
-                        onKeyUp={updateFormatState}
-                        onMouseUp={updateFormatState}
-                        className="w-full h-full bg-transparent border-0 focus:ring-0 p-0 text-editorial-charcoal text-[17px] leading-relaxed outline-none overflow-y-auto [&_ul]:list-disc [&_ul]:pl-6 [&_ul]:my-2 [&_li]:mb-1 [&_ol]:list-decimal [&_ol]:pl-6 [&_ol]:my-2"
-                        style={{ minHeight: "200px" }}
-                        data-placeholder="Type your analysis here. Start by identifying the core premise..."
-                    />
+                    
+                    {answerType === "multiple" && options && options.length > 0 ? (
+                        <div className="space-y-4 mt-2">
+                            {options.map((opt, idx) => {
+                                const labels = ["A", "B", "C", "D"];
+                                const isSelected = currentAnswer === opt;
+                                return (
+                                    <button
+                                        key={idx}
+                                        onClick={() => onAnswerChange(opt)}
+                                        className={`w-full text-left p-5 border-2 flex items-start gap-4 transition-all duration-200 shadow-sm hover:shadow-md ${isSelected ? 'border-crimson bg-red-50' : 'border-editorial-charcoal/20 bg-white hover:border-editorial-charcoal/40'}`}
+                                    >
+                                        <span className={`flex-shrink-0 w-8 h-8 flex items-center justify-center font-bold border-2 rounded-full ${isSelected ? 'border-crimson text-crimson' : 'border-editorial-charcoal text-editorial-charcoal'}`}>
+                                            {labels[idx]}
+                                        </span>
+                                        <span className={`text-[16px] leading-relaxed pt-1 ${isSelected ? 'font-bold text-editorial-charcoal' : 'text-editorial-charcoal/90'}`}>
+                                            {opt}
+                                        </span>
+                                    </button>
+                                );
+                            })}
+                        </div>
+                    ) : (
+                        <div
+                            ref={textareaRef}
+                            contentEditable
+                            onInput={(e) => onAnswerChange(e.currentTarget.innerHTML)}
+                            onKeyUp={updateFormatState}
+                            onMouseUp={updateFormatState}
+                            className="w-full h-full bg-transparent border-0 focus:ring-0 p-0 text-editorial-charcoal text-[17px] leading-relaxed outline-none overflow-y-auto [&_ul]:list-disc [&_ul]:pl-6 [&_ul]:my-2 [&_li]:mb-1 [&_ol]:list-decimal [&_ol]:pl-6 [&_ol]:my-2"
+                            style={{ minHeight: "200px" }}
+                            data-placeholder="Type your analysis here. Start by identifying the core premise..."
+                        />
+                    )}
                 </div>
             </div>
 

@@ -14,12 +14,34 @@ const UserSchema = new mongoose.Schema(
         image: {
             type: String,
         },
+        department: {
+            type: String,
+        },
+        skills: {
+            type: [String],
+            default: []
+        },
         // We can store a mock progress map here or user's courses
         progress: {
             type: Map,
             of: Number,
             default: {}
         },
+        goals: [
+            {
+                title: String,
+                date: String,
+                month: String,
+                type: { type: String, enum: ['PRACTICE', 'MOCK TEST', 'READING', 'VIDEO'] },
+                duration: String,
+            }
+        ],
+        learningVelocity: [
+            {
+                date: String,
+                value: { type: Number, default: 0 },
+            }
+        ],
         role: {
             type: String,
             enum: ['student', 'admin'],

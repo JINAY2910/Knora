@@ -6,30 +6,7 @@ import QuestionNavigator from "@/components/practice/QuestionNavigator";
 import QuestionPanel from "@/components/practice/QuestionPanel";
 import AnswerPanel from "@/components/practice/AnswerPanel";
 
-// Mock question data
-const mockQuestions = [
-    {
-        id: 1,
-        topic: "Java Concurrency",
-        question:
-            "Analyze the following thread execution scenario and identify the concurrency issue. Explain how to resolve it using appropriate synchronization.",
-        context:
-            'Two threads (Thread A and Thread B) are simultaneously accessing a shared bank account object to withdraw funds. The withdraw method checks if the balance is sufficient, then sleeps for 100ms before deducting the amount. Both threads pass the balance check before either deducts the amount, resulting in a negative balance.',
-        figure: {
-            src: "https://lh3.googleusercontent.com/aida-public/AB6AXuB9MuLWML_jbMIvzFlebH0p9mBTdVw1YNz6U-lANG1fwN_KSRH2SYMVqOWGedwgzLavMmG7mI9rMC-eVWVdmSky0MUFzk2fBIMW2DqLuR_Ok6jfxtnwrdJD3lXvUdpG8IAqC6HMCHMPMp8lsug4l5GtoP2uv0Sa1dM-U65kVkMkSgVSgzjQUlO8QjH32p_C8D_VoIqgtaahgXsC1DSwfmBG48TN-KkA1rg6GUJIWNRYfUw9JkGozJMNkCSeBuSdnzt5FAk8O_KcHN0",
-            alt: "Race Condition Diagram",
-            caption: "Figure 1.1: Race Condition in Thread Execution",
-        },
-        tags: ["#Java", "#Concurrency", "#RaceCondition"],
-    },
-    // Add more mock questions as needed
-];
-
-// Generate 50 questions (for demo)
-const allQuestions = Array.from({ length: 50 }, (_, i) => ({
-    ...mockQuestions[0],
-    id: i + 1,
-}));
+import { half1Questions, half2Questions, fullQuestions } from "@/data/javaPracticeQuestions";
 
 export default function PracticePage({ params }: { params: Promise<{ subjectId: string, testId: string }> }) {
     const { subjectId, testId } = use(params);
@@ -37,7 +14,7 @@ export default function PracticePage({ params }: { params: Promise<{ subjectId: 
     const [currentQuestion, setCurrentQuestion] = useState(1);
     const [answers, setAnswers] = useState<Record<number, string>>({});
     const [markedForReview, setMarkedForReview] = useState<number[]>([]);
-    const [answerType, setAnswerType] = useState<"write" | "multiple">("write");
+    const [answerTypeState, setAnswerTypeState] = useState<"write" | "multiple">("write");
 
     // Dynamic Header Info based on URL
     const subjectName = subjectId === "cpp-programming" ? "C++ Programming" : "Java Programming";
@@ -61,16 +38,17 @@ export default function PracticePage({ params }: { params: Promise<{ subjectId: 
 
     const [timeRemaining, setTimeRemaining] = useState(timeLimit);
 
-    // Generate accurate number of questions based on test type
-    const testQuestions = Array.from({ length: questionCount }, (_, i) => ({
-        ...mockQuestions[0],
-        id: i + 1,
-    }));
+    let testQuestions = fullQuestions;
+    if (testId === "half-1") testQuestions = half1Questions;
+    else if (testId === "half-2") testQuestions = half2Questions;
 
     const question = testQuestions[currentQuestion - 1];
     const currentAnswer = answers[currentQuestion] || "";
     const answeredQuestions = Object.keys(answers).map(Number);
     const isMarkedForReview = markedForReview.includes(currentQuestion);
+    
+    // Resolve computed answer type dynamically based on options presence
+    const currentAnswerType = (question as any).options ? "multiple" : answerTypeState;
 
     const handleNavigate = (questionNum: number) => {
         setCurrentQuestion(questionNum);
@@ -128,7 +106,7 @@ export default function PracticePage({ params }: { params: Promise<{ subjectId: 
                 {/* Question Panel */}
                 <section className="w-1/2 flex flex-col border-r border-editorial-charcoal/20 bg-[#f4f5f2] relative">
                     <QuestionNavigator
-                        totalQuestions={allQuestions.length}
+                        totalQuestions={testQuestions.length}
                         currentQuestion={currentQuestion}
                         answeredQuestions={answeredQuestions}
                         onNavigate={handleNavigate}
@@ -139,7 +117,7 @@ export default function PracticePage({ params }: { params: Promise<{ subjectId: 
                         topic={question.topic}
                         question={question.question}
                         context={question.context}
-                        figure={question.figure}
+                        figure={(question as any).figure}
                         tags={question.tags}
                     />
 
@@ -157,10 +135,11 @@ export default function PracticePage({ params }: { params: Promise<{ subjectId: 
                 </section>
 
                 <AnswerPanel
-                    answerType={answerType}
+                    answerType={currentAnswerType}
+                    options={(question as any).options}
                     currentAnswer={currentAnswer}
                     onAnswerChange={handleAnswerChange}
-                    onAnswerTypeChange={setAnswerType}
+                    onAnswerTypeChange={setAnswerTypeState}
                     onPrevious={handlePrevious}
                     onNext={handleNext}
                     onMarkForReview={handleMarkForReview}

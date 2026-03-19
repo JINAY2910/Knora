@@ -3,6 +3,7 @@
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { useSession } from "next-auth/react";
 
 const NAV_ITEMS = [
     { name: "Dashboard", href: "/dashboard/subjects", icon: "grid_view" },
@@ -15,6 +16,7 @@ export default function Sidebar() {
     const [isCollapsed, setIsCollapsed] = useState(true);
     const [isInitialized, setIsInitialized] = useState(false);
     const pathname = usePathname();
+    const { data: session } = useSession();
 
     useEffect(() => {
         const stored = localStorage.getItem("isSidebarCollapsed");
@@ -119,22 +121,26 @@ export default function Sidebar() {
                     </svg>
                     {!isCollapsed && <span className="text-[15px] font-medium text-[#e2e8f0]">Collapse</span>}
                 </button>
-                <div
-                    onClick={(e) => e.stopPropagation()}
-                    className={`flex items-center gap-3 p-2 rounded cursor-pointer hover:bg-white/5 transition-colors ${isCollapsed ? "justify-center" : ""}`}
+                <Link
+                    href="/dashboard/profile"
+                    className={`flex items-center gap-3 p-2 rounded cursor-pointer hover:bg-white/5 transition-colors ${isCollapsed ? "justify-center" : ""} ${pathname === "/dashboard/profile" ? "bg-white/10" : ""}`}
                 >
-                    <div className="h-9 w-9 border-2 border-charcoal bg-crimson flex items-center justify-center text-white font-sans font-bold text-sm shadow-[2px_2px_0px_0px_rgba(55,56,51,1)] shrink-0">
-                        JS
+                    <div className="h-9 w-9 border-2 border-charcoal bg-crimson flex items-center justify-center text-white overflow-hidden font-sans font-bold text-sm shadow-[2px_2px_0px_0px_rgba(55,56,51,1)] shrink-0">
+                        {session?.user?.image ? (
+                            <img src={session.user.image} alt="Avatar" className="w-full h-full object-cover" />
+                        ) : (
+                            session?.user?.name?.charAt(0) || "U"
+                        )}
                     </div>
                     {!isCollapsed && (
                         <div className="flex-1 min-w-0 overflow-hidden">
                             <p className="text-sm font-medium text-white truncate">
-                                Jinay Shah
+                                {session?.user?.name || "User Profile"}
                             </p>
-                            <p className="text-[10px] text-gray-400 truncate uppercase tracking-wider">Information Technology</p>
+                            <p className="text-[10px] text-gray-400 truncate uppercase tracking-wider">Account & Settings</p>
                         </div>
                     )}
-                </div>
+                </Link>
             </div>
         </aside>
     );

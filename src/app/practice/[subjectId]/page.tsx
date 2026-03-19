@@ -52,7 +52,7 @@ export default function PracticeSubjectPage({ params }: { params: Promise<{ subj
                                 </div>
                                 <div className="flex items-center gap-3 text-sm text-charcoal font-medium">
                                     <span className="material-symbols-outlined text-[18px] text-charcoal/50">format_list_numbered</span>
-                                    25 Questions
+                                    15 Questions
                                 </div>
                             </div>
                         </div>
@@ -85,7 +85,7 @@ export default function PracticeSubjectPage({ params }: { params: Promise<{ subj
                                 </div>
                                 <div className="flex items-center gap-3 text-sm text-charcoal font-medium">
                                     <span className="material-symbols-outlined text-[18px] text-charcoal/50">format_list_numbered</span>
-                                    25 Questions
+                                    15 Questions
                                 </div>
                             </div>
                         </div>
@@ -118,7 +118,7 @@ export default function PracticeSubjectPage({ params }: { params: Promise<{ subj
                                 </div>
                                 <div className="flex items-center gap-3 text-sm font-medium">
                                     <span className="material-symbols-outlined text-[18px] text-white/50">format_list_numbered</span>
-                                    50 Questions
+                                    15 MCQs, 5 Theory
                                 </div>
                             </div>
                         </div>
