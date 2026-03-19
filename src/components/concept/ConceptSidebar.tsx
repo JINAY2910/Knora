@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import AITutorChatbot from "./AITutorChatbot";
 
 interface Section {
     id: string;
@@ -15,6 +16,7 @@ interface ConceptSidebarProps {
 
 export default function ConceptSidebar({ sections, activeSection }: ConceptSidebarProps) {
     const [isFullscreen, setIsFullscreen] = useState(false);
+    const [isChatOpen, setIsChatOpen] = useState(false);
 
     useEffect(() => {
         const handleFullscreenChange = () => {
@@ -64,11 +66,17 @@ export default function ConceptSidebar({ sections, activeSection }: ConceptSideb
                     <p className="text-sm text-gray-300 font-sans mb-4 leading-snug">
                         Need a simpler explanation? Ask the AI.
                     </p>
-                    <button className="w-full py-2 bg-cream text-charcoal text-xs font-bold uppercase tracking-wider hover:bg-white transition-colors border border-transparent hover:border-crimson">
+                    <button 
+                        onClick={() => setIsChatOpen(true)}
+                        className="w-full py-2 bg-cream text-charcoal text-xs font-bold uppercase tracking-wider hover:bg-white transition-colors border border-transparent hover:border-crimson shadow-[2px_2px_0px_0px_rgba(250,39,66,1)] active:translate-x-[2px] active:translate-y-[2px] active:shadow-none"
+                    >
                         Ask Question
                     </button>
                 </div>
             </div>
+
+            {/* Render Chatbot Modally */}
+            <AITutorChatbot isOpen={isChatOpen} onClose={() => setIsChatOpen(false)} />
         </aside>
     );
 }
