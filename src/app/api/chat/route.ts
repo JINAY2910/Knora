@@ -3,7 +3,7 @@ import { NextResponse } from 'next/server';
 
 export async function POST(req: Request) {
     try {
-        const { messages } = await req.json(); 
+        const { messages, systemInstruction: customSystemInstruction } = await req.json(); 
         
         if (!process.env.GEMINI_API_KEY) {
             return NextResponse.json({ error: "Gemini API key is not configured in the environment." }, { status: 500 });
@@ -11,9 +11,12 @@ export async function POST(req: Request) {
 
         const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
         
-        const systemPrompt = `You are the Knora AI Tutor, an advanced learning assistant integrated directly into Knora. Knora is a modern, brutalist-styled computer science education platform. You exist to help students master complex CS topics with simple, highly accurate explanations. 
+        const defaultSystemPrompt = `You are the Knora AI Tutor, an advanced learning assistant integrated directly into Knora. Knora is a modern, brutalist-styled computer science education platform. You exist to help students master complex CS topics with simple, highly accurate explanations. 
 If they ask about the platform, explain features like the 'Learning Velocity Heatmap' (which automatically tracks study consistency in the background) or the dynamic 'AI Practice Testing' (which dynamically generates quizzes at a 75% MCQ / 25% Theory ratio). 
 Maintain a supportive, concise, and highly intelligent persona. Do not babble; answer precisely. Use markdown for code snippets. Represent the brutalist, direct aesthetic of Knora.`;
+
+        // Use custom system instruction if provided (e.g. for test hint mode), otherwise use default
+        const systemPrompt = customSystemInstruction || defaultSystemPrompt;
 
         // Configure the model with system instruction
         const model = genAI.getGenerativeModel({ 
