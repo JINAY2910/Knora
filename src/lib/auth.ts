@@ -36,20 +36,24 @@ export const authOptions: NextAuthOptions = {
                         await existingUser.save();
                     }
                 }
-
-                return true;
             } catch (error) {
-                console.error("Error saving user to database", error);
-                return false;
+                // Log the error but still allow login — a DB outage should not
+                // completely block authentication.
+                console.error("[Auth] DB error during signIn (login still allowed):", error);
             }
+            return true;
         },
         async jwt({ token, user }) {
             if (user) {
-                await dbConnect();
-                const dbUser = await User.findOne({ email: user.email });
-                if (dbUser) {
-                    token.id = dbUser._id.toString();
-                    token.role = dbUser.role;
+                try {
+                    await dbConnect();
+                    const dbUser = await User.findOne({ email: user.email });
+                    if (dbUser) {
+                        token.id = dbUser._id.toString();
+                        token.role = dbUser.role;
+                    }
+                } catch (error) {
+                    console.error("[Auth] DB error during jwt callback:", error);
                 }
             }
             return token;
