@@ -55,7 +55,7 @@ export default function PlannerPage() {
             .finally(() => setLoading(false));
     }, []);
 
-    const hasData = data && (data.weakTopics.length > 0 || data.recentTests.length > 0);
+    const hasData = data && (data.weakTopics?.length > 0 || data.recentTests?.length > 0);
 
     return (
         <div className="bg-cream text-charcoal font-sans min-h-screen flex overflow-hidden selection:bg-crimson selection:text-white">
@@ -129,7 +129,7 @@ export default function PlannerPage() {
                                     )}
 
                                     {/* Weak Topics Revision List */}
-                                    {data.weakTopics.length > 0 && (
+                                    {data.weakTopics?.length > 0 && (
                                         <section>
                                             <h2 className="text-xl font-bold uppercase tracking-tight mb-5 flex items-center gap-2">
                                                 <span className="material-symbols-outlined text-crimson">warning</span>
@@ -156,7 +156,7 @@ export default function PlannerPage() {
                                     )}
 
                                     {/* Strong Topics */}
-                                    {data.strongTopics.length > 0 && (
+                                    {data.strongTopics?.length > 0 && (
                                         <section>
                                             <h2 className="text-xl font-bold uppercase tracking-tight mb-5 flex items-center gap-2">
                                                 <span className="material-symbols-outlined text-green-600">check_circle</span>
