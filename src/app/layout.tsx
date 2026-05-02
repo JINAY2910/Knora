@@ -3,6 +3,7 @@ import { Inter, Merriweather } from "next/font/google";
 import "./globals.css";
 import NextAuthProvider from "@/components/NextAuthProvider";
 import ActivityTracker from "@/components/ActivityTracker";
+import { ThemeProvider } from "@/components/ThemeProvider";
 
 const inter = Inter({
     subsets: ["latin"],
@@ -28,7 +29,7 @@ export default function RootLayout({
     children: React.ReactNode;
 }>) {
     return (
-        <html lang="en" className="light">
+        <html lang="en" suppressHydrationWarning>
             <head>
                 <link rel="icon" href="/favicon.ico" />
                 <link
@@ -41,12 +42,19 @@ export default function RootLayout({
                 />
             </head>
             <body
-                className={`${inter.variable} ${merriweather.variable} bg-background-light text-text-main font-sans selection:bg-primary selection:text-white overflow-x-hidden`}
+                className={`${inter.variable} ${merriweather.variable} bg-background-light text-text-main dark:bg-background-dark dark:text-text-light font-sans selection:bg-primary selection:text-white overflow-x-hidden transition-colors duration-300`}
             >
-                <NextAuthProvider>
-                    <ActivityTracker />
-                    {children}
-                </NextAuthProvider>
+                <ThemeProvider
+                    attribute="class"
+                    defaultTheme="system"
+                    enableSystem
+                    disableTransitionOnChange
+                >
+                    <NextAuthProvider>
+                        <ActivityTracker />
+                        {children}
+                    </NextAuthProvider>
+                </ThemeProvider>
             </body>
         </html>
     );
