@@ -77,6 +77,36 @@ export default function SubjectsPage() {
                                 }
                             ]}
                         />
+                        {/* Database Management Systems */}
+                        <SubjectCard
+                            title="Database Management Systems"
+                            modules={7}
+                            topics={34}
+                            progress={0}
+                            status="active"
+                            icon="database"
+                            href="/concept/dbms-intro"
+                            priorityTopics={[
+                                {
+                                    title: "The ER Startup Architect",
+                                    type: "practice",
+                                    duration: "INTERACTIVE",
+                                    difficulty: "MEDIUM",
+                                },
+                                {
+                                    title: "SQL Murder Mystery",
+                                    type: "practice",
+                                    duration: "INTERACTIVE",
+                                    difficulty: "HARD",
+                                },
+                                {
+                                    title: "The Normalization Kitchen",
+                                    type: "read",
+                                    duration: "VISUAL",
+                                    difficulty: "MEDIUM",
+                                }
+                            ]}
+                        />
                     </div>
 
                     {/* Sidebar Widgets */}
