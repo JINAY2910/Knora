@@ -81,15 +81,18 @@ export default function Sidebar() {
 
                         <div className="space-y-1">
                             {[
-                                { name: "Semester 1", color: "bg-blue-500" },
-                                { name: "Semester 2", color: "bg-green-500" },
-                                { name: "Semester 3", color: "bg-yellow-500" },
-                                { name: "Semester 4", color: "bg-crimson", active: true },
-                            ].map((sem) => (
-                                <button
+                                { name: "Semester 1", href: "#", color: "bg-blue-500" },
+                                { name: "Semester 2", href: "#", color: "bg-green-500" },
+                                { name: "Semester 3", href: "/dashboard/semester-3", color: "bg-yellow-500" },
+                                { name: "Semester 4", href: "/dashboard/subjects", color: "bg-crimson" },
+                            ].map((sem) => {
+                                const isSemActive = pathname === sem.href;
+                                return (
+                                <Link
                                     key={sem.name}
+                                    href={sem.href}
                                     onClick={(e) => e.stopPropagation()}
-                                    className={`w-full flex items-center gap-3 px-3 py-2 text-sm font-medium transition-colors rounded-lg ${sem.active
+                                    className={`w-full flex items-center gap-3 px-3 py-2 text-sm font-medium transition-colors rounded-lg ${isSemActive
                                         ? "text-white bg-white/5"
                                         : "text-gray-400 hover:text-white hover:bg-white/5"
                                         }`}
@@ -97,8 +100,9 @@ export default function Sidebar() {
                                 >
                                     <span className={`w-2 h-2 rounded-full ${sem.color} flex-shrink-0`}></span>
                                     <span>{sem.name}</span>
-                                </button>
-                            ))}
+                                </Link>
+                                );
+                            })}
                         </div>
                     </div>
                 )}

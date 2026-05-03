@@ -1,6 +1,15 @@
 import Link from "next/link";
 
-export default function FeaturedCourse() {
+interface FeaturedCourseProps {
+    title: string;
+    description: string;
+    href: string;
+    progress: number;
+}
+
+export default function FeaturedCourse({ title, description, href, progress }: FeaturedCourseProps) {
+    if (!title) return null; // If no featured course, don't render anything
+
     return (
         <section className="mb-12">
             <div className="relative bg-charcoal text-white overflow-hidden">
@@ -17,13 +26,13 @@ export default function FeaturedCourse() {
                             <span className="text-xs font-medium text-gray-300">Exam in 5 days</span>
                         </div>
                         <h2 className="text-4xl font-bold text-white mb-4 tracking-tighter font-sans">
-                            C++: Advanced Pointers
+                            {title}
                         </h2>
                         <p className="text-gray-300 max-w-xl mb-8 text-base leading-relaxed font-light">
-                            Master C++ memory management. Deep dive into raw pointers, smart pointers, and move semantics, which appear in 80% of advanced interviews.
+                            {description}
                         </p>
                         <div className="flex items-center gap-6">
-                            <Link href="/concept/xor-gate">
+                            <Link href={href}>
                                 <button className="px-8 py-3 bg-white text-charcoal font-bold text-sm hover:bg-gray-100 transition-colors flex items-center gap-2 border border-transparent hover:border-white">
                                     <span className="material-symbols-outlined text-[20px]">play_arrow</span>
                                     Resume Learning
@@ -34,56 +43,26 @@ export default function FeaturedCourse() {
                     </div>
 
                     {/* Progress Circle */}
-                    {/* Unique Tech Progress Widget */}
                     <div className="flex-shrink-0 relative w-36 h-36 flex items-center justify-center">
-                        {/* Rotating Outer Ring */}
                         <div className="absolute inset-0 animate-[spin_10s_linear_infinite] opacity-30">
                             <svg className="w-full h-full" viewBox="0 0 100 100">
                                 <circle cx="50" cy="50" r="49" fill="none" stroke="currentColor" strokeWidth="1" strokeDasharray="1 5" className="text-white" />
                             </svg>
                         </div>
 
-                        {/* Main Progress Ring */}
                         <svg className="w-full h-full -rotate-90 drop-shadow-[0_0_15px_rgba(220,20,60,0.6)]" viewBox="0 0 100 100">
-                            {/* Track Background */}
+                            <circle cx="50" cy="50" r="40" fill="transparent" stroke="rgba(255,255,255,0.1)" strokeWidth="6" />
+                            <circle cx="50" cy="50" r="34" fill="transparent" stroke="rgba(255,255,255,0.2)" strokeWidth="2" strokeDasharray="1 3" />
                             <circle
-                                cx="50"
-                                cy="50"
-                                r="40"
-                                fill="transparent"
-                                stroke="rgba(255,255,255,0.1)"
-                                strokeWidth="6"
-                            />
-
-                            {/* Inner Track (Ticks) */}
-                            <circle
-                                cx="50"
-                                cy="50"
-                                r="34"
-                                fill="transparent"
-                                stroke="rgba(255,255,255,0.2)"
-                                strokeWidth="2"
-                                strokeDasharray="1 3"
-                            />
-
-                            {/* Progress Arc */}
-                            <circle
-                                cx="50"
-                                cy="50"
-                                r="40"
-                                fill="transparent"
-                                stroke="#DC143C"
-                                strokeWidth="6"
+                                cx="50" cy="50" r="40" fill="transparent" stroke="#DC143C" strokeWidth="6"
                                 strokeDasharray={`${2 * Math.PI * 40}`}
-                                strokeDashoffset={`${2 * Math.PI * 40 * (1 - 0.67)}`}
-                                strokeLinecap="round"
-                                className="transition-all duration-1000 ease-out"
+                                strokeDashoffset={`${2 * Math.PI * 40 * (1 - (progress / 100))}`}
+                                strokeLinecap="round" className="transition-all duration-1000 ease-out"
                             />
                         </svg>
 
-                        {/* Center Text */}
                         <div className="absolute inset-0 flex flex-col items-center justify-center">
-                            <span className="text-3xl font-bold font-mono text-white tracking-tighter">67%</span>
+                            <span className="text-3xl font-bold font-mono text-white tracking-tighter">{progress}%</span>
                             <span className="text-[8px] text-crimson font-bold uppercase tracking-widest mt-1 animate-pulse">Running</span>
                         </div>
                     </div>

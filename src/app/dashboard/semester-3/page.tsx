@@ -10,11 +10,11 @@ import Subject from "@/models/Subject";
 // Tell Next.js not to statically render this page
 export const dynamic = 'force-dynamic';
 
-export default async function SubjectsPage() {
+export default async function Semester3Page() {
     await dbConnect();
     
-    // Fetch subjects for semester 4
-    const subjects = await Subject.find({ semester: 4 }).lean();
+    // Fetch subjects for semester 3
+    const subjects = await Subject.find({ semester: 3 }).lean();
     
     // Find a featured course if any exists in this semester
     const featuredSubject = subjects.find(s => s.isFeatured) || null;
@@ -24,6 +24,11 @@ export default async function SubjectsPage() {
             <DashboardHeader />
 
             <div className="flex-1 overflow-y-auto p-10 scroll-smooth">
+                <div className="mb-8">
+                    <h1 className="text-2xl font-bold text-charcoal tracking-tight">Semester 3</h1>
+                    <p className="text-sm text-gray-500 mt-1">Past subjects and modules</p>
+                </div>
+
                 {featuredSubject && (
                     <FeaturedCourse 
                         title={featuredSubject.title}

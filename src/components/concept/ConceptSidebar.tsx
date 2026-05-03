@@ -41,7 +41,7 @@ export default function ConceptSidebar({ sections, activeSection }: ConceptSideb
                 <nav className="space-y-3">
                     {sections.map((section, index) => (
                         <a
-                            key={section.id}
+                            key={section.id || `section-${index}`}
                             href={section.href}
                             className={
                                 section.id === activeSection
