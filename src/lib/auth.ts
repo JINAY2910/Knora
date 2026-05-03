@@ -2,6 +2,7 @@ import { NextAuthOptions } from "next-auth";
 import GoogleProvider from "next-auth/providers/google";
 import dbConnect from "@/lib/mongodb";
 import User from "@/models/User";
+import { logger } from "@/lib/logger";
 
 export const authOptions: NextAuthOptions = {
     providers: [
@@ -10,11 +11,12 @@ export const authOptions: NextAuthOptions = {
             clientSecret: process.env.GOOGLE_CLIENT_SECRET as string,
         }),
     ],
+    secret: process.env.NEXTAUTH_SECRET,
     session: {
         strategy: "jwt",
     },
     callbacks: {
-        async signIn({ user, account, profile }) {
+        async signIn({ user }) {
             try {
                 await dbConnect();
 
@@ -22,9 +24,9 @@ export const authOptions: NextAuthOptions = {
 
                 if (!existingUser) {
                     await User.create({
-                        name: user.name,
+                        name: user.name || "Student",
                         email: user.email,
-                        image: user.image,
+                        image: user.image || "",
                         progress: {},
                         role: "student",
                     });
@@ -36,32 +38,37 @@ export const authOptions: NextAuthOptions = {
                         await existingUser.save();
                     }
                 }
+                return true;
             } catch (error) {
-                // Log the error but still allow login — a DB outage should not
-                // completely block authentication.
-                console.error("[Auth] DB error during signIn (login still allowed):", error);
+                logger.error("Auth signIn failed", {
+                    error: error instanceof Error ? error.message : "Unknown error",
+                    email: user.email,
+                });
+                return false;
             }
-            return true;
         },
         async jwt({ token, user }) {
-            if (user) {
+            if (user || (token.email && !token.id)) {
                 try {
                     await dbConnect();
-                    const dbUser = await User.findOne({ email: user.email });
+                    const dbUser = await User.findOne({ email: user?.email ?? token.email });
                     if (dbUser) {
                         token.id = dbUser._id.toString();
                         token.role = dbUser.role;
                     }
                 } catch (error) {
-                    console.error("[Auth] DB error during jwt callback:", error);
+                    logger.error("Auth jwt callback failed", {
+                        error: error instanceof Error ? error.message : "Unknown error",
+                        email: token.email,
+                    });
                 }
             }
             return token;
         },
         async session({ session, token }) {
             if (session.user) {
-                (session.user as any).id = token.id as string;
-                (session.user as any).role = token.role as string;
+                (session.user as any).id = token.id;
+                (session.user as any).role = token.role;
             }
             return session;
         },
