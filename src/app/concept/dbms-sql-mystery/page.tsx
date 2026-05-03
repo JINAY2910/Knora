@@ -38,7 +38,7 @@ export default function DbmsSqlMysteryPage() {
 
                         <div className="prose-custom text-charcoal max-w-none">
                             <p className="mb-6 text-lg leading-relaxed">A crime has taken place and the detective needs your help! You have been given access to the police department's database.</p>
-        <CalloutBox type="practice">
+        <CalloutBox type="concept">
             <p>Use your SQL skills to find out who committed the murder. You will need to use <code>JOIN</code>s, <code>WHERE</code> clauses, and <code>GROUP BY</code> to cross-reference the suspects.</p>
         </CalloutBox>
         <div className="bg-charcoal text-white p-6 rounded-lg font-mono text-sm mt-8 shadow-[4px_4px_0px_0px_rgba(250,39,66,1)]">
