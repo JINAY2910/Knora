@@ -41,7 +41,14 @@ export async function POST(req: Request) {
             return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
         }
 
-        const { date, value } = await req.json();
+        let date, value;
+        try {
+            const body = await req.json();
+            date = body.date;
+            value = body.value;
+        } catch (e) {
+            return NextResponse.json({ error: "Invalid JSON body" }, { status: 400 });
+        }
 
         if (!date || value === undefined) {
             return NextResponse.json({ error: "Missing required fields" }, { status: 400 });
