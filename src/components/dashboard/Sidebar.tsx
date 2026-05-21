@@ -9,7 +9,6 @@ const NAV_ITEMS = [
     { name: "Dashboard", href: "/dashboard/subjects", icon: "grid_view" },
     { name: "Practice", href: "/practice", icon: "edit_document" },
     { name: "Revision Planner", href: "/planner", icon: "calendar_today" },
-    { name: "Analytics", href: "/assessment/macro-midterm-2023", icon: "analytics" },
 ];
 
 export default function Sidebar() {
