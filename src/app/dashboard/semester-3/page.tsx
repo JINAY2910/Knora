@@ -3,7 +3,6 @@ import FeaturedCourse from "@/components/dashboard/FeaturedCourse";
 import SubjectCard from "@/components/dashboard/SubjectCard";
 import HeatmapWidget from "@/components/dashboard/HeatmapWidget";
 import GoalsWidget from "@/components/dashboard/GoalsWidget";
-import AIInsightWidget from "@/components/dashboard/AIInsightWidget";
 import dbConnect from "@/lib/mongodb";
 import Subject from "@/models/Subject";
 
@@ -60,7 +59,6 @@ export default async function Semester3Page() {
                     <div className="hidden xl:block col-span-4 space-y-8">
                         <HeatmapWidget />
                         <GoalsWidget />
-                        <AIInsightWidget />
                     </div>
                 </div>
             </div>

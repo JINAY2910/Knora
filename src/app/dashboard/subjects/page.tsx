@@ -3,7 +3,6 @@ import FeaturedCourse from "@/components/dashboard/FeaturedCourse";
 import SubjectCard from "@/components/dashboard/SubjectCard";
 import HeatmapWidget from "@/components/dashboard/HeatmapWidget";
 import GoalsWidget from "@/components/dashboard/GoalsWidget";
-import AIInsightWidget from "@/components/dashboard/AIInsightWidget";
 import dbConnect from "@/lib/mongodb";
 import Subject from "@/models/Subject";
 
@@ -12,10 +11,10 @@ export const dynamic = 'force-dynamic';
 
 export default async function SubjectsPage() {
     await dbConnect();
-    
+
     // Fetch subjects for semester 4
     const subjects = await Subject.find({ semester: 4 }).lean();
-    
+
     // Find a featured course if any exists in this semester
     const featuredSubject = subjects.find(s => s.isFeatured) || null;
 
@@ -25,7 +24,7 @@ export default async function SubjectsPage() {
 
             <div className="flex-1 overflow-y-auto p-10 scroll-smooth">
                 {featuredSubject && (
-                    <FeaturedCourse 
+                    <FeaturedCourse
                         title={featuredSubject.title}
                         description={featuredSubject.featuredDescription || ""}
                         href={featuredSubject.href}
@@ -55,7 +54,6 @@ export default async function SubjectsPage() {
                     <div className="hidden xl:block col-span-4 space-y-8">
                         <HeatmapWidget />
                         <GoalsWidget />
-                        <AIInsightWidget />
                     </div>
                 </div>
             </div>
