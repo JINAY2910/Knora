@@ -1,4 +1,7 @@
 import mongoose from "mongoose";
+import dotenv from "dotenv";
+
+dotenv.config();
 const PriorityTopicSchema = new mongoose.Schema({
     title: String,
     type: String, // "read", "video", "practice", "interactive"
@@ -22,7 +25,10 @@ const SubjectSchema = new mongoose.Schema({
 }, { timestamps: true });
 
 const Subject = mongoose.models.Subject || mongoose.model("Subject", SubjectSchema);
-const MONGODB_URI = "mongodb+srv://<credentials>@cluster0.pquuilc.mongodb.net/knora";
+const MONGODB_URI = process.env.MONGODB_URI;
+if (!MONGODB_URI) {
+    throw new Error("Please define the MONGODB_URI environment variable inside .env");
+}
 
 const subjects = [
     {
