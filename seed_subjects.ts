@@ -22,7 +22,7 @@ const SubjectSchema = new mongoose.Schema({
 }, { timestamps: true });
 
 const Subject = mongoose.models.Subject || mongoose.model("Subject", SubjectSchema);
-const MONGODB_URI = "mongodb+srv://<credentials>@cluster0.pquuilc.mongodb.net/dayflow_hrms";
+const MONGODB_URI = "mongodb+srv://<credentials>@cluster0.pquuilc.mongodb.net/knora";
 
 const subjects = [
     {
